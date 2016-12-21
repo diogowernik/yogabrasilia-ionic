@@ -1,0 +1,17 @@
+ion-view
+	div#tabs-bar
+		div#tabs-items
+			div(ng-click='goTab(0)').navtab-item Cartões
+			div(ng-click='goTab(1)').navtab-item Publicações
+			div(ng-click='goTab(2)').navtab-item Mensagens
+		div#tabs-indicator
+		div#tabs-rail
+	ion-content(scroll='false').card-bg
+		ion-slides(option='sliderOptions' slider='data.slider')
+			ion-slide-page
+				ion-nav-view(name='tabs-window-cards')
+			ion-slide-page
+				ion-nav-view(name='tabs-window-publications')
+			ion-slide-page
+				ion-nav-view(name='tabs-window-chats')
+	

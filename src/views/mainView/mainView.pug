@@ -1,0 +1,33 @@
+ion-side-menus
+	ion-side-menu(side='left')
+		div#menu-header
+			div#menu-user-profile-picture
+				img(ng-src='{{ user.image }}')
+			div#menu-user-name {{ user.name }}
+		div#menu-actions-list
+			div.menu-action 
+				i.ion-android-home
+				span Inicio
+			div.menu-action 
+				i.ion-person
+				span Perfil
+			div.menu-action 
+				i.ion-ios-albums
+				span Minhas Publicações
+			div.menu-diveder
+			div.menu-action
+				i.ion-coffee
+				span Compre-nos um café!
+			div.menu-action 
+				i.ion-android-star 
+				span Gostou do app? Avalie!
+	ion-side-menu-content
+		div#header-bar
+			div(menu-toggle="left")#sidemenu-toggle
+				span.ion-navicon
+			span#header-bar-title {{ view.title }}
+			span#header-bar-filter
+				span.ion-funnel
+			span#header-bar-premium
+				span.ion-ribbon-b
+		ion-nav-view(name='main-window')

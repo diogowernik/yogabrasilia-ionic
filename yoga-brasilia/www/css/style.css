@@ -1,0 +1,314 @@
+.card-bg {
+  margin-top: 56px;
+  background-color: #f5e9ef;
+}
+
+.intro-slide-page {
+  padding: 32px;
+  padding-top: 10vh;
+  text-align: center;
+}
+
+.intro-slide-page img {
+  max-width: 80%;
+}
+
+.intro-slide-page h2 {
+  margin-top: 8vh;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  color: #9A275A;
+}
+
+.intro-slide-page p {
+  margin-top: 4vh;
+  text-align: justify;
+}
+
+.intro-finale {
+  background-color: #9A275A;
+  height: 100%;
+}
+
+#menu-header {
+  height: 168px;
+  background-color: #9A275A;
+}
+
+#menu-user-profile-picture {
+  padding: 28px 16px 16px 16px;
+}
+
+#menu-user-profile-picture img {
+  height: 72px;
+  width: 72px;
+  border-radius: 56px;
+}
+
+#menu-user-name {
+  padding-left: 16px;
+  font-size: 1.125rem;
+  letter-spacing: 0.9px;
+  color: #f5e9ef;
+}
+
+.menu-action {
+  height: 48px;
+  line-height: 48px;
+  font-size: 1rem;
+  color: #9A275A;
+}
+
+.menu-action i {
+  display: inline-block;
+  width: 56px;
+  padding-left: 16px;
+  font-size: 1.2rem;
+}
+
+.menu-diveder {
+  display: block;
+  margin: 4px;
+  height: 2px;
+  background-color: #faf4f7;
+}
+
+#header-bar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 56px;
+  line-height: 56px;
+  background-color: #9A275A;
+  font-size: 1.25rem;
+  color: #4d142d;
+}
+
+#sidemenu-toggle {
+  display: block !important;
+  width: 64px;
+  font-size: 2rem;
+  padding-left: 16px;
+}
+
+#header-bar-filter, #header-bar-premium {
+  height: 48px;
+  width: 48px;
+  text-align: center;
+}
+
+#header-bar-title {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  color: #f5e9ef;
+  letter-spacing: 1px;
+}
+
+#auth-logo {
+  width: 100%;
+  background-color: #9A275A;
+  text-align: center;
+  padding: 15vh 0;
+}
+
+#auth-bar {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  position: relative;
+  background-color: #9A275A;
+  color: #f5e9ef;
+}
+
+#auth-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+#auth-login, #auth-signup {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+#auth-page-indicator {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 3px;
+  background-color: #cd93ad;
+}
+
+.auth-page {
+  position: relative;
+  top: 0;
+  padding: 16px 32px;
+}
+
+#auth-cta-1, #auth-cta-2, #auth-cta-3, #auth-cta-4 {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 3rem;
+  opacity: 0.5;
+}
+
+.auth-fb-holder, .auth-gl-holder {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.auth-fb-button, .auth-gl-button {
+  width: 100%;
+  height: 42px;
+  line-height: 42px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  color: white;
+}
+
+.auth-fb-button i, .auth-gl-button i {
+  width: 50px;
+  padding-left: 20px;
+  font-size: 1.3rem;
+}
+
+.auth-fb-button .auth-button-divider, .auth-gl-button .auth-button-divider {
+  font-size: 1.8rem;
+  opacity: 0.3;
+}
+
+.auth-fb-button .auth-fb-cta, .auth-fb-button .auth-gl-cta, .auth-gl-button .auth-fb-cta, .auth-gl-button .auth-gl-cta {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+  display: inline-block;
+}
+
+.auth-fb-button {
+  background-color: #3b5998;
+}
+
+.auth-gl-button {
+  background-color: #dd4b39;
+}
+
+.auth-email-link {
+  text-align: center;
+  color: #9A275A;
+  opacity: 0.8;
+}
+
+#login-holder {
+  position: relative;
+  height: 100vh;
+  background-color: #9A275A;
+  padding-top: 30vh;
+  text-align: center;
+}
+
+#login-logo-holder {
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transition: all 225ms ease;
+  -moz-transition: all 225ms ease;
+  transition: all 225ms ease;
+  opacity: 0;
+}
+
+#login-user-type-select-holder {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  opacity: 0;
+}
+
+#login-user-type-select {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#tabs-bar {
+  position: relative;
+  top: 0;
+  z-index: 10;
+  height: 56px;
+  line-height: 56px;
+  background-color: #9A275A;
+}
+
+#tabs-items {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  color: #f5e9ef;
+}
+
+.navtab-item {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+#tabs-indicator, #tabs-rail {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+}
+
+#tabs-indicator {
+  width: 33.33333%;
+  background-color: #6c1b3f;
+  z-index: 1;
+}
+
+#tabs-rail {
+  width: 100%;
+  background-color: #9A275A;
+  z-index: 0;
+}

@@ -1,0 +1,24 @@
+.intro-slide-page{
+	padding: 32px;
+	padding-top: 10vh;
+	text-align: center;
+	img{
+		max-width: 80%;
+	}
+	h2{
+		margin-top: 8vh;
+		font-size: 1.3rem;
+		text-transform: capitalize;
+		letter-spacing: 1px;
+		color: $c1;
+	}
+	p{
+		margin-top: 4vh;
+		text-align: justify;
+	}
+}
+
+.intro-finale{
+	background-color: $c1;
+	height: 100%;
+}

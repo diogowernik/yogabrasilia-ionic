@@ -1,0 +1,38 @@
+#tabs-bar{
+	position: relative;
+	top: 0;
+	z-index: 10;
+	height: $s56;
+	line-height: $s56;
+	background-color: $c1;
+}
+
+#tabs-items{
+	@include display(flex);
+	text-align: center;
+	font-size: 0.9rem;
+	text-transform: capitalize;
+	color: $white;
+}
+
+.navtab-item{
+	@include flex(1);
+}
+
+#tabs-indicator, #tabs-rail{
+	position: absolute;
+	bottom: 0;
+	height: 3px;
+}
+
+#tabs-indicator{
+	width: 33.33333%;
+	background-color: shade($c1, 30%);
+	z-index: 1;
+}
+
+#tabs-rail{
+	width: 100%;
+	background-color: $c1;
+	z-index: 0;
+}

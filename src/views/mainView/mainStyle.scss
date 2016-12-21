@@ -1,0 +1,65 @@
+#menu-header{
+	height: 168px;
+	background-color: $c1;
+}
+
+#menu-user-profile-picture{
+	padding: $s28 $s16 $s16 $s16;
+	img{
+		@include size($s72);
+		border-radius: $s56;
+	}
+}
+
+#menu-user-name{
+	padding-left: $s16;
+	font-size: 1.125rem;
+	letter-spacing: 0.9px;
+	color: $white;
+}
+
+.menu-action{
+	i{
+		display: inline-block;
+		width: $s56;
+		padding-left: $s16;
+		font-size: 1.2rem;
+	}
+	height: $s48;
+	line-height: $s48;
+	font-size: 1rem;
+	color: $c1;
+}
+.menu-diveder{
+	display: block;
+	margin: $s4;
+	height: 2px;
+	background-color: tint($c1, 95%);
+}
+
+
+#header-bar{
+	@include display(flex)
+	height: $s56;
+	line-height: $s56;
+	background-color: $c1;
+	font-size: 1.25rem;
+	color: shade($c1, 50%);
+}
+
+#sidemenu-toggle{
+	display: block!important;
+	width: 64px;
+	font-size: 2rem;
+	padding-left: $s16;
+}
+
+#header-bar-filter, #header-bar-premium{
+	@include size($s48);
+	text-align: center;
+}
+#header-bar-title{
+	@include flex(1);
+	color: $white;
+	letter-spacing: 1px;
+}

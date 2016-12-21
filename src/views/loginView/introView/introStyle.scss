@@ -1,0 +1,25 @@
+#login-holder{
+	position: relative;
+	height: 100vh;
+	background-color: $c1;
+	padding-top: 30vh;
+	text-align: center;
+}
+
+#login-logo-holder{
+	@include transform(scale(0.5));
+	@include transition(all 225ms ease);
+	opacity: 0;
+}
+
+#login-user-type-select-holder{
+	position: absolute;
+	bottom: 12px;
+	width: 100%;
+	opacity: 0;
+}
+
+#login-user-type-select{
+	width: 90%;
+	margin: 0 auto;
+}

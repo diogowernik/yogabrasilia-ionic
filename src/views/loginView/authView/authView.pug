@@ -1,0 +1,39 @@
+ion-view
+	div#auth-logo
+		img(src='img/signin.png')
+	div#auth-bar
+		div#auth-flex
+			div(ng-click='goToSlide(0)')#auth-login Login
+			div(ng-click='goToSlide(1)')#auth-signup Criar Conta
+		div#auth-page-indicator
+	ion-slides(option='sliderOptions' slider='data.slider')
+		ion-slide-page.auth-page
+			div#auth-cta-1 Conecte-se com
+			div.auth-fb-holder
+				div(ng-click='oauthLogin("facebook")').auth-fb-button
+					i.ion-social-facebook
+					span.auth-button-divider |
+					span.auth-fb-cta Conecte-se com Facebook
+			div.auth-gl-holder
+				div(ng-click='oauthLogin("google")').auth-gl-button
+					i.ion-social-googleplus
+					span.auth-button-divider |
+					span.auth-gl-cta Conecte-se com Google
+			div#auth-cta-2 ou
+			div.auth-email-holder
+				div(ng-click='showEmailLogin()').auth-email-link Conecte-se com e-mail
+		ion-slide-page.auth-page
+			div#auth-cta-3 Crie uma conta
+			div.auth-fb-holder
+				div(ng-click='oauthLogin("facebook")').auth-fb-button
+					i.ion-social-facebook
+					span.auth-button-divider |
+					span.auth-fb-cta Conecte-se com Facebook
+			div.auth-gl-holder
+				div(ng-click='oauthLogin("google")').auth-gl-button
+					i.ion-social-googleplus
+					span.auth-button-divider |
+					span.auth-gl-cta Conecte-se com Google
+			div#auth-cta-4 ou
+			div.auth-email-holder
+				div(ng-click='showEmailSignup()').auth-email-link Crie com e-mail
