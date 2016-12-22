@@ -35,6 +35,7 @@ Para ver o App no Browser:
 	/premium
 /login
 	/auth
+	/intro
 	/intro-prof
 	/intro-stud
 	/recover
