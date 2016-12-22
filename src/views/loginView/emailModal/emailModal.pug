@@ -1,0 +1,5 @@
+ion-modal-view
+	div#email-modal-header
+		div#email-modal-title {{ emailLogin == true ? 'Login com E-mail' : 'Criar Conta' }}
+		div(ng-click='closeEmailFlow()')#email-modal-close
+			i.ion-close-round

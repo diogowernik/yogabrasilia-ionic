@@ -1,13 +1,26 @@
 ion-view
+	div.intro-top-bar
+		div(ng-show='canGoBack').intro-back-button
+			i(ng-click='prev()').ion-arrow-left-c
+		div(ng-show='canGoForward').intro-forward-button
+			i(ng-click='next()').ion-arrow-right-c
 	ion-slides(option='sliderOptions' slider='data.slider')
 		ion-slide-page
-			div
-				h2 Hello
+			div.intro-slide-page
+				img(src='img/welcome-stud-1.png')
+				h2 Encontre espaços próximos
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut pretium lectus. Proin facilisis justo et est cursus, ac egestas nulla ornare. Donec et arcu lectus.
 		ion-slide-page
-			div
-				h2 From
+			div.intro-slide-page
+				img(src='img/welcome-stud-2.png')
+				h2 Converse com Professores
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut pretium lectus. Proin facilisis justo et est cursus, ac egestas nulla ornare. Donec et arcu lectus.
 		ion-slide-page
-			div
-				h2 Students
+			div.intro-slide-page
+				img(src='img/welcome-prof-3.png')
+				h2 Encontre Eventos
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut pretium lectus. Proin facilisis justo et est cursus, ac egestas nulla ornare. Donec et arcu lectus.
 		ion-slide-page
 			div.intro-finale
+				img(src='img/signin.png')
+				h2(ui-sref='login.auth') Conecte-se

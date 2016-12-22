@@ -21,7 +21,7 @@ ion-view
 					span.auth-gl-cta Conecte-se com Google
 			div#auth-cta-2 ou
 			div.auth-email-holder
-				div(ng-click='showEmailLogin()').auth-email-link Conecte-se com e-mail
+				div(ng-click='openEmailFlow(0)').auth-email-link Conecte-se com e-mail
 		ion-slide-page.auth-page
 			div#auth-cta-3 Crie uma conta
 			div.auth-fb-holder
@@ -36,4 +36,4 @@ ion-view
 					span.auth-gl-cta Conecte-se com Google
 			div#auth-cta-4 ou
 			div.auth-email-holder
-				div(ng-click='showEmailSignup()').auth-email-link Crie com e-mail
+				div(ng-click='openEmailFlow()').auth-email-link Crie com e-mail

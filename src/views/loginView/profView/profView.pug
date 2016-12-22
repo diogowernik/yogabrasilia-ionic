@@ -1,4 +1,9 @@
 ion-view
+	div.intro-top-bar
+		div(ng-show='canGoBack').intro-back-button
+			i(ng-click='prev()').ion-arrow-left-c
+		div(ng-show='canGoForward').intro-forward-button
+			i(ng-click='next()').ion-arrow-right-c
 	ion-slides(option='sliderOptions' slider='data.slider')
 		ion-slide-page
 			div.intro-slide-page
@@ -17,3 +22,5 @@ ion-view
 				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut pretium lectus. Proin facilisis justo et est cursus, ac egestas nulla ornare. Donec et arcu lectus.
 		ion-slide-page
 			div.intro-finale
+				img(src='img/signin.png')
+				h2(ui-sref='login.auth') Conecte-se

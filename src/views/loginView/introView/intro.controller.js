@@ -1,4 +1,4 @@
-app.controller('IntroController', function($scope, $state, $timeout){
+app.controller('IntroController', function($scope, $state, $timeout, ipCookie){
 	$timeout(function(){
 		$('#login-logo-holder').css({
 				'-webkit-transform': 'scale(1)',
@@ -16,6 +16,8 @@ app.controller('IntroController', function($scope, $state, $timeout){
 
 
 	$scope.go = function( dest ){
-		$state.go('login.' + dest )
+		var destiny = String(dest);
+		ipCookie('user_type', destiny)
+		$state.go('login.' + destiny )
 	}
 })

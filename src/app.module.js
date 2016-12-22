@@ -1,4 +1,4 @@
-var app = angular.module('yogabrasilia', ['ionic', 'ngCordova', 'ng-token-auth'])
+var app = angular.module('yogabrasilia', ['ionic', 'ngCordova', 'ng-token-auth', 'ipCookie'])
 
 app.run(function($ionicPlatform, $cordovaInAppBrowser){
 	$ionicPlatform.ready(function(){
