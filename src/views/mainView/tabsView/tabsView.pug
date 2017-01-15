@@ -9,9 +9,9 @@ ion-view
 	ion-content(scroll='false').card-bg
 		ion-slides(option='sliderOptions' slider='data.slider')
 			ion-slide-page
-				ion-nav-view(name='tabs-window-cards')
+				div(ng-include="'./views/cardsView.html'")
 			ion-slide-page
-				ion-nav-view(name='tabs-window-publications')
+				div(ng-include="'./views/publicationsView.html'")
 			ion-slide-page
-				ion-nav-view(name='tabs-window-chats')
+				div(ng-include="'./views/chatsView.html'")
 	

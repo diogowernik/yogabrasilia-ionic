@@ -14,513 +14,744 @@ r.reject()}),r.promise}}}]),angular.module("ngCordova.plugins.file",[]).constant
 return o=o||null,n.cordova.plugins.notification.local.clear(r,function(e){t.resolve(e)},o),t.promise},clearAll:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.clearAll(function(e){o.resolve(e)},r),o.promise},cancel:function(r,o){var t=e.defer();return o=o||null,n.cordova.plugins.notification.local.cancel(r,function(e){t.resolve(e)},o),t.promise},cancelAll:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.cancelAll(function(e){o.resolve(e)},r),o.promise},isPresent:function(r,o){var t=e.defer();return o=o||null,n.cordova.plugins.notification.local.isPresent(r,function(e){t.resolve(e)},o),t.promise},isScheduled:function(r,o){var t=e.defer();return o=o||null,n.cordova.plugins.notification.local.isScheduled(r,function(e){t.resolve(e)},o),t.promise},isTriggered:function(r,o){var t=e.defer();return o=o||null,n.cordova.plugins.notification.local.isTriggered(r,function(e){t.resolve(e)},o),t.promise},hasPermission:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.hasPermission(function(e){e?o.resolve(e):o.reject(e)},r),o.promise},registerPermission:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.registerPermission(function(e){e?o.resolve(e):o.reject(e)},r),o.promise},promptForPermission:function(r){console.warn('Deprecated: use "registerPermission" instead.');var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.registerPermission(function(e){e?o.resolve(e):o.reject(e)},r),o.promise},getAllIds:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.getAllIds(function(e){o.resolve(e)},r),o.promise},getIds:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.getIds(function(e){o.resolve(e)},r),o.promise},getScheduledIds:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.getScheduledIds(function(e){o.resolve(e)},r),o.promise},getTriggeredIds:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.getTriggeredIds(function(e){o.resolve(e)},r),o.promise},get:function(r,o){var t=e.defer();return o=o||null,n.cordova.plugins.notification.local.get(r,function(e){t.resolve(e)},o),t.promise},getAll:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.getAll(function(e){o.resolve(e)},r),o.promise},getScheduled:function(r,o){var t=e.defer();return o=o||null,n.cordova.plugins.notification.local.getScheduled(r,function(e){t.resolve(e)},o),t.promise},getAllScheduled:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.getAllScheduled(function(e){o.resolve(e)},r),o.promise},getTriggered:function(r,o){var t=e.defer();return o=o||null,n.cordova.plugins.notification.local.getTriggered(r,function(e){t.resolve(e)},o),t.promise},getAllTriggered:function(r){var o=e.defer();return r=r||null,n.cordova.plugins.notification.local.getAllTriggered(function(e){o.resolve(e)},r),o.promise},getDefaults:function(){return n.cordova.plugins.notification.local.getDefaults()},setDefaults:function(e){n.cordova.plugins.notification.local.setDefaults(e)}}}]),angular.module("ngCordova.plugins.mMediaAds",[]).factory("$cordovaMMediaAds",["$q","$window",function(e,n){return{setOptions:function(r){var o=e.defer();return n.mMedia.setOptions(r,function(){o.resolve()},function(){o.reject()}),o.promise},createBanner:function(r){var o=e.defer();return n.mMedia.createBanner(r,function(){o.resolve()},function(){o.reject()}),o.promise},removeBanner:function(){var r=e.defer();return n.mMedia.removeBanner(function(){r.resolve()},function(){r.reject()}),r.promise},showBanner:function(r){var o=e.defer();return n.mMedia.showBanner(r,function(){o.resolve()},function(){o.reject()}),o.promise},showBannerAtXY:function(r,o){var t=e.defer();return n.mMedia.showBannerAtXY(r,o,function(){t.resolve()},function(){t.reject()}),t.promise},hideBanner:function(){var r=e.defer();return n.mMedia.hideBanner(function(){r.resolve()},function(){r.reject()}),r.promise},prepareInterstitial:function(r){var o=e.defer();return n.mMedia.prepareInterstitial(r,function(){o.resolve()},function(){o.reject()}),o.promise},showInterstitial:function(){var r=e.defer();return n.mMedia.showInterstitial(function(){r.resolve()},function(){r.reject()}),r.promise}}}]),angular.module("ngCordova.plugins.media",[]).service("NewMedia",["$q","$interval",function(e,n){function r(e){angular.isDefined(s)||(s=n(function(){0>d&&(d=e.getDuration(),a&&d>0&&a.notify({duration:d})),e.getCurrentPosition(function(e){e>-1&&(f=e)},function(e){console.log("Error getting pos="+e)}),a&&a.notify({position:f})},1e3))}function o(){angular.isDefined(s)&&(n.cancel(s),s=void 0)}function t(){f=-1,d=-1}function i(e){this.media=new Media(e,function(e){o(),t(),a.resolve(e)},function(e){o(),t(),a.reject(e)},function(e){l=e,a.notify({status:l})})}var a,c,u,s,l=null,f=-1,d=-1;return i.prototype.play=function(n){return a=e.defer(),"object"!=typeof n&&(n={}),this.media.play(n),r(this.media),a.promise},i.prototype.pause=function(){o(),this.media.pause()},i.prototype.stop=function(){this.media.stop()},i.prototype.release=function(){this.media.release(),this.media=void 0},i.prototype.seekTo=function(e){this.media.seekTo(e)},i.prototype.setVolume=function(e){this.media.setVolume(e)},i.prototype.startRecord=function(){this.media.startRecord()},i.prototype.stopRecord=function(){this.media.stopRecord()},i.prototype.currentTime=function(){return c=e.defer(),this.media.getCurrentPosition(function(e){c.resolve(e)}),c.promise},i.prototype.getDuration=function(){return u=e.defer(),this.media.getDuration(function(e){u.resolve(e)}),u.promise},i}]).factory("$cordovaMedia",["NewMedia",function(e){return{newMedia:function(n){return new e(n)}}}]),angular.module("ngCordova.plugins.mobfoxAds",[]).factory("$cordovaMobFoxAds",["$q","$window",function(e,n){return{setOptions:function(r){var o=e.defer();return n.MobFox.setOptions(r,function(){o.resolve()},function(){o.reject()}),o.promise},createBanner:function(r){var o=e.defer();return n.MobFox.createBanner(r,function(){o.resolve()},function(){o.reject()}),o.promise},removeBanner:function(){var r=e.defer();return n.MobFox.removeBanner(function(){r.resolve()},function(){r.reject()}),r.promise},showBanner:function(r){var o=e.defer();return n.MobFox.showBanner(r,function(){o.resolve()},function(){o.reject()}),o.promise},showBannerAtXY:function(r,o){var t=e.defer();return n.MobFox.showBannerAtXY(r,o,function(){t.resolve()},function(){t.reject()}),t.promise},hideBanner:function(){var r=e.defer();return n.MobFox.hideBanner(function(){r.resolve()},function(){r.reject()}),r.promise},prepareInterstitial:function(r){var o=e.defer();return n.MobFox.prepareInterstitial(r,function(){o.resolve()},function(){o.reject()}),o.promise},showInterstitial:function(){var r=e.defer();return n.MobFox.showInterstitial(function(){r.resolve()},function(){r.reject()}),r.promise}}}]),angular.module("ngCordova.plugins",["ngCordova.plugins.3dtouch","ngCordova.plugins.actionSheet","ngCordova.plugins.adMob","ngCordova.plugins.appAvailability","ngCordova.plugins.appRate","ngCordova.plugins.appVersion","ngCordova.plugins.backgroundGeolocation","ngCordova.plugins.badge","ngCordova.plugins.barcodeScanner","ngCordova.plugins.batteryStatus","ngCordova.plugins.beacon","ngCordova.plugins.ble","ngCordova.plugins.bluetoothSerial","ngCordova.plugins.brightness","ngCordova.plugins.calendar","ngCordova.plugins.camera","ngCordova.plugins.capture","ngCordova.plugins.clipboard","ngCordova.plugins.contacts","ngCordova.plugins.datePicker","ngCordova.plugins.device","ngCordova.plugins.deviceMotion","ngCordova.plugins.deviceOrientation","ngCordova.plugins.dialogs","ngCordova.plugins.emailComposer","ngCordova.plugins.facebook","ngCordova.plugins.facebookAds","ngCordova.plugins.file","ngCordova.plugins.fileTransfer","ngCordova.plugins.fileOpener2","ngCordova.plugins.flashlight","ngCordova.plugins.flurryAds","ngCordova.plugins.ga","ngCordova.plugins.geolocation","ngCordova.plugins.globalization","ngCordova.plugins.googleAds","ngCordova.plugins.googleAnalytics","ngCordova.plugins.googleMap","ngCordova.plugins.googlePlayGame","ngCordova.plugins.googlePlus","ngCordova.plugins.healthKit","ngCordova.plugins.httpd","ngCordova.plugins.iAd","ngCordova.plugins.imagePicker","ngCordova.plugins.inAppBrowser","ngCordova.plugins.instagram","ngCordova.plugins.keyboard","ngCordova.plugins.keychain","ngCordova.plugins.launchNavigator","ngCordova.plugins.localNotification","ngCordova.plugins.media","ngCordova.plugins.mMediaAds","ngCordova.plugins.mobfoxAds","ngCordova.plugins.mopubAds","ngCordova.plugins.nativeAudio","ngCordova.plugins.network","ngCordova.plugins.pinDialog","ngCordova.plugins.preferences","ngCordova.plugins.printer","ngCordova.plugins.progressIndicator","ngCordova.plugins.push","ngCordova.plugins.push_v5","ngCordova.plugins.sms","ngCordova.plugins.socialSharing","ngCordova.plugins.spinnerDialog","ngCordova.plugins.splashscreen","ngCordova.plugins.sqlite","ngCordova.plugins.statusbar","ngCordova.plugins.toast","ngCordova.plugins.touchid","ngCordova.plugins.vibration","ngCordova.plugins.videoCapturePlus","ngCordova.plugins.zip","ngCordova.plugins.insomnia"]),angular.module("ngCordova.plugins.mopubAds",[]).factory("$cordovaMoPubAds",["$q","$window",function(e,n){return{setOptions:function(r){var o=e.defer();return n.MoPub.setOptions(r,function(){o.resolve()},function(){o.reject()}),o.promise},createBanner:function(r){var o=e.defer();return n.MoPub.createBanner(r,function(){o.resolve()},function(){o.reject()}),o.promise},removeBanner:function(){var r=e.defer();return n.MoPub.removeBanner(function(){r.resolve()},function(){r.reject()}),r.promise},showBanner:function(r){var o=e.defer();return n.MoPub.showBanner(r,function(){o.resolve()},function(){o.reject()}),o.promise},showBannerAtXY:function(r,o){var t=e.defer();return n.MoPub.showBannerAtXY(r,o,function(){t.resolve()},function(){t.reject()}),t.promise},hideBanner:function(){var r=e.defer();return n.MoPub.hideBanner(function(){r.resolve()},function(){r.reject()}),r.promise},prepareInterstitial:function(r){var o=e.defer();return n.MoPub.prepareInterstitial(r,function(){o.resolve()},function(){o.reject()}),o.promise},showInterstitial:function(){var r=e.defer();return n.MoPub.showInterstitial(function(){r.resolve()},function(){r.reject()}),r.promise}}}]),angular.module("ngCordova.plugins.nativeAudio",[]).factory("$cordovaNativeAudio",["$q","$window",function(e,n){return{preloadSimple:function(r,o){var t=e.defer();return n.plugins.NativeAudio.preloadSimple(r,o,function(e){t.resolve(e)},function(e){t.reject(e)}),t.promise},preloadComplex:function(r,o,t,i,a){var c=e.defer();return n.plugins.NativeAudio.preloadComplex(r,o,t,i,a,function(e){c.resolve(e)},function(e){c.reject(e)}),c.promise},play:function(r,o){var t=e.defer();return n.plugins.NativeAudio.play(r,function(e){t.resolve(e)},function(e){t.reject(e)},o),t.promise},stop:function(r){var o=e.defer();return n.plugins.NativeAudio.stop(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},loop:function(r){var o=e.defer();return n.plugins.NativeAudio.loop(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},unload:function(r){var o=e.defer();return n.plugins.NativeAudio.unload(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},setVolumeForComplexAsset:function(r,o){var t=e.defer();return n.plugins.NativeAudio.setVolumeForComplexAsset(r,o,function(e){t.resolve(e)},function(e){t.reject(e)}),t.promise}}}]),angular.module("ngCordova.plugins.network",[]).factory("$cordovaNetwork",["$rootScope","$timeout",function(e,n){var r=function(){var r=navigator.connection.type;n(function(){e.$broadcast("$cordovaNetwork:offline",r)})},o=function(){var r=navigator.connection.type;n(function(){e.$broadcast("$cordovaNetwork:online",r)})};return document.addEventListener("deviceready",function(){navigator.connection&&(document.addEventListener("offline",r,!1),document.addEventListener("online",o,!1))}),{getNetwork:function(){return navigator.connection.type},isOnline:function(){var e=navigator.connection.type;return e!==Connection.UNKNOWN&&e!==Connection.NONE},isOffline:function(){var e=navigator.connection.type;return e===Connection.UNKNOWN||e===Connection.NONE},clearOfflineWatch:function(){document.removeEventListener("offline",r),e.$$listeners["$cordovaNetwork:offline"]=[]},clearOnlineWatch:function(){document.removeEventListener("online",o),e.$$listeners["$cordovaNetwork:online"]=[]}}}]).run(["$injector",function(e){e.get("$cordovaNetwork")}]),angular.module("ngCordova.plugins.pinDialog",[]).factory("$cordovaPinDialog",["$q","$window",function(e,n){return{prompt:function(r,o,t){var i=e.defer();return n.plugins.pinDialog.prompt(r,function(e){i.resolve(e)},o,t),i.promise}}}]),angular.module("ngCordova.plugins.preferences",[]).factory("$cordovaPreferences",["$window","$q",function(e,n){return{pluginNotEnabledMessage:"Plugin not enabled",decoratePromise:function(e){e.success=function(n){return e.then(n),e},e.error=function(n){return e.then(null,n),e}},store:function(r,o,t){function i(e){c.resolve(e)}function a(e){c.reject(new Error(e))}var c=n.defer(),u=c.promise;if(e.plugins){var s;s=3===arguments.length?e.plugins.appPreferences.store(t,r,o):e.plugins.appPreferences.store(r,o),s.then(i,a)}else c.reject(new Error(this.pluginNotEnabledMessage));return this.decoratePromise(u),u},fetch:function(r,o){function t(e){a.resolve(e)}function i(e){a.reject(new Error(e))}var a=n.defer(),c=a.promise;if(e.plugins){var u;u=2===arguments.length?e.plugins.appPreferences.fetch(o,r):e.plugins.appPreferences.fetch(r),u.then(t,i)}else a.reject(new Error(this.pluginNotEnabledMessage));return this.decoratePromise(c),c},remove:function(r,o){function t(e){a.resolve(e)}function i(e){a.reject(new Error(e))}var a=n.defer(),c=a.promise;if(e.plugins){var u;u=2===arguments.length?e.plugins.appPreferences.remove(o,r):e.plugins.appPreferences.remove(r),u.then(t,i)}else a.reject(new Error(this.pluginNotEnabledMessage));return this.decoratePromise(c),c},show:function(){function r(e){t.resolve(e)}function o(e){t.reject(new Error(e))}var t=n.defer(),i=t.promise;return e.plugins?e.plugins.appPreferences.show().then(r,o):t.reject(new Error(this.pluginNotEnabledMessage)),this.decoratePromise(i),i}}}]),angular.module("ngCordova.plugins.printer",[]).factory("$cordovaPrinter",["$q","$window",function(e,n){return{isAvailable:function(){var r=e.defer();return n.plugin.printer.isAvailable(function(e){r.resolve(e)}),r.promise},print:function(r,o){var t=e.defer();return n.plugin.printer.print(r,o,function(){t.resolve()}),t.promise}}}]),angular.module("ngCordova.plugins.progressIndicator",[]).factory("$cordovaProgress",[function(){return{show:function(e){var n=e||"Please wait...";return ProgressIndicator.show(n)},showSimple:function(e){var n=e||!1;return ProgressIndicator.showSimple(n)},showSimpleWithLabel:function(e,n){var r=e||!1,o=n||"Loading...";return ProgressIndicator.showSimpleWithLabel(r,o)},showSimpleWithLabelDetail:function(e,n,r){var o=e||!1,t=n||"Loading...",i=r||"Please wait";return ProgressIndicator.showSimpleWithLabelDetail(o,t,i)},showDeterminate:function(e,n){var r=e||!1,o=n||5e4;return ProgressIndicator.showDeterminate(r,o)},showDeterminateWithLabel:function(e,n,r){var o=e||!1,t=n||5e4,i=r||"Loading...";return ProgressIndicator.showDeterminateWithLabel(o,t,i)},showAnnular:function(e,n){var r=e||!1,o=n||5e4;return ProgressIndicator.showAnnular(r,o)},showAnnularWithLabel:function(e,n,r){var o=e||!1,t=n||5e4,i=r||"Loading...";return ProgressIndicator.showAnnularWithLabel(o,t,i)},showBar:function(e,n){var r=e||!1,o=n||5e4;return ProgressIndicator.showBar(r,o)},showBarWithLabel:function(e,n,r){var o=e||!1,t=n||5e4,i=r||"Loading...";return ProgressIndicator.showBarWithLabel(o,t,i)},showSuccess:function(e,n){var r=e||!1,o=n||"Success";return ProgressIndicator.showSuccess(r,o)},showText:function(e,n,r){var o=e||!1,t=n||"Warning",i=r||"center";return ProgressIndicator.showText(o,t,i)},hide:function(){return ProgressIndicator.hide()}}}]),angular.module("ngCordova.plugins.push",[]).factory("$cordovaPush",["$q","$window","$rootScope","$timeout",function(e,n,r,o){return{onNotification:function(e){o(function(){r.$broadcast("$cordovaPush:notificationReceived",e)})},register:function(r){var o,t=e.defer();return void 0!==r&&void 0===r.ecb&&(o=null===document.querySelector("[ng-app]")?"document.body":"document.querySelector('[ng-app]')",r.ecb="angular.element("+o+").injector().get('$cordovaPush').onNotification"),n.plugins.pushNotification.register(function(e){t.resolve(e)},function(e){t.reject(e)},r),t.promise},unregister:function(r){var o=e.defer();return n.plugins.pushNotification.unregister(function(e){o.resolve(e)},function(e){o.reject(e)},r),o.promise},setBadgeNumber:function(r){var o=e.defer();return n.plugins.pushNotification.setApplicationIconBadgeNumber(function(e){o.resolve(e)},function(e){o.reject(e)},r),o.promise}}}]),angular.module("ngCordova.plugins.push_v5",[]).factory("$cordovaPushV5",["$q","$rootScope","$timeout",function(e,n,r){var o;return{initialize:function(n){var r=e.defer();return o=PushNotification.init(n),r.resolve(o),r.promise},onNotification:function(){r(function(){o.on("notification",function(e){n.$emit("$cordovaPushV5:notificationReceived",e)})})},onError:function(){r(function(){o.on("error",function(e){n.$emit("$cordovaPushV5:errorOccurred",e)})})},register:function(){var n=e.defer();return void 0===o?n.reject(new Error("init must be called before any other operation")):o.on("registration",function(e){n.resolve(e.registrationId)}),n.promise},unregister:function(){var n=e.defer();return void 0===o?n.reject(new Error("init must be called before any other operation")):o.unregister(function(e){n.resolve(e)},function(e){n.reject(e)}),n.promise},getBadgeNumber:function(){var n=e.defer();return void 0===o?n.reject(new Error("init must be called before any other operation")):o.getApplicationIconBadgeNumber(function(e){n.resolve(e)},function(e){n.reject(e)}),n.promise},setBadgeNumber:function(n){var r=e.defer();return void 0===o?r.reject(new Error("init must be called before any other operation")):o.setApplicationIconBadgeNumber(function(e){r.resolve(e)},function(e){r.reject(e)},n),r.promise},finish:function(){var n=e.defer();return void 0===o?n.reject(new Error("init must be called before any other operation")):o.finish(function(e){n.resolve(e)},function(e){n.reject(e)}),n.promise}}}]),angular.module("ngCordova.plugins.recentsControl",[]).factory("$cordovaRecents",function(){return{setColor:function(e){return RecentsControl.setColor(e)},setDescription:function(e){return RecentsControl.setDescription(e)},setOptions:function(e,n){return RecentsControl.setOptions(e,n)}}}),angular.module("ngCordova.plugins.screenshot",[]).factory("$cordovaScreenshot",["$q",function(e){return{captureToFile:function(n){var r=n||{},o=r.extension||"jpg",t=r.quality||"100",i=e.defer();return navigator.screenshot?(navigator.screenshot.save(function(e,n){e?i.reject(e):i.resolve(n.filePath)},o,t,r.filename),i.promise):(i.resolve(null),i.promise)},captureToUri:function(n){var r=n||{},o=r.extension||"jpg",t=r.quality||"100",i=e.defer();return navigator.screenshot?(navigator.screenshot.URI(function(e,n){e?i.reject(e):i.resolve(n.URI)},o,t,r.filename),i.promise):(i.resolve(null),i.promise)}}}]),angular.module("ngCordova.plugins.serial",[]).factory("$cordovaSerial",["$q",function(e){var n={};return n.requestPermission=function(n){var r=e.defer();return serial.requestPermission(n,function(){r.resolve()},function(e){r.reject(e)}),r.promise},n.open=function(n){var r=e.defer();return serial.open(n,function(){r.resolve()},function(e){r.reject(e)}),r.promise},n.write=function(n){var r=e.defer();return serial.write(n,function(){r.resolve()},function(e){r.reject(e)}),r.promise},n.writeHex=function(n){var r=e.defer();return serial.writeHex(n,function(){r.resolve()},function(e){r.reject(e)}),r.promise},n.read=function(){var n=e.defer();return serial.read(function(e){var r=new Uint8Array(e);n.resolve(r)},function(e){n.reject(e)}),n.promise},n.registerReadCallback=function(e,n){serial.registerReadCallback(function(n){var r=new Uint8Array(n);e(r)},n)},n.close=function(){var n=e.defer();return serial.close(function(){n.resolve()},function(e){n.reject(e)}),n.promise},n}]),angular.module("ngCordova.plugins.sms",[]).factory("$cordovaSms",["$q",function(e){return{send:function(n,r,o){var t=e.defer();return sms.send(n,r,o,function(e){t.resolve(e)},function(e){t.reject(e)}),t.promise}}}]),angular.module("ngCordova.plugins.socialSharing",[]).factory("$cordovaSocialSharing",["$q","$window",function(e,n){return{share:function(r,o,t,i){var a=e.defer();return o=o||null,t=t||null,i=i||null,n.plugins.socialsharing.share(r,o,t,i,function(){a.resolve(!0)},function(){a.reject(!1)}),a.promise},shareWithOptions:function(r){var o=e.defer();return n.plugins.socialsharing.shareWithOptions(r,function(){o.resolve(!0)},function(){o.reject(!1)}),o.promise},shareViaTwitter:function(r,o,t){var i=e.defer();return o=o||null,t=t||null,n.plugins.socialsharing.shareViaTwitter(r,o,t,function(){i.resolve(!0)},function(){i.reject(!1)}),i.promise},shareViaWhatsApp:function(r,o,t){var i=e.defer();return o=o||null,t=t||null,n.plugins.socialsharing.shareViaWhatsApp(r,o,t,function(){i.resolve(!0)},function(){i.reject(!1)}),i.promise},shareViaFacebook:function(r,o,t){var i=e.defer();return r=r||null,o=o||null,t=t||null,n.plugins.socialsharing.shareViaFacebook(r,o,t,function(){i.resolve(!0)},function(){i.reject(!1)}),i.promise},shareViaFacebookWithPasteMessageHint:function(r,o,t,i){var a=e.defer();return o=o||null,t=t||null,n.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(r,o,t,i,function(){a.resolve(!0)},function(){a.reject(!1)}),a.promise},shareViaSMS:function(r,o){var t=e.defer();return n.plugins.socialsharing.shareViaSMS(r,o,function(){t.resolve(!0)},function(){t.reject(!1)}),t.promise},shareViaEmail:function(r,o,t,i,a,c){var u=e.defer();return t=t||null,i=i||null,a=a||null,c=c||null,n.plugins.socialsharing.shareViaEmail(r,o,t,i,a,c,function(){u.resolve(!0)},function(){u.reject(!1)}),u.promise},shareVia:function(r,o,t,i,a){var c=e.defer();return o=o||null,t=t||null,i=i||null,a=a||null,n.plugins.socialsharing.shareVia(r,o,t,i,a,function(){c.resolve(!0)},function(){c.reject(!1)}),c.promise},canShareViaEmail:function(){var r=e.defer();return n.plugins.socialsharing.canShareViaEmail(function(){r.resolve(!0)},function(){r.reject(!1)}),r.promise},canShareVia:function(r,o,t,i,a){var c=e.defer();return n.plugins.socialsharing.canShareVia(r,o,t,i,a,function(e){c.resolve(e)},function(e){c.reject(e)}),c.promise},available:function(){var n=e.defer();return window.plugins.socialsharing.available(function(e){e?n.resolve():n.reject()}),n.promise}}}]),angular.module("ngCordova.plugins.spinnerDialog",[]).factory("$cordovaSpinnerDialog",["$window",function(e){return{show:function(n,r,o,t){return o=o||!1,e.plugins.spinnerDialog.show(n,r,o,t)},hide:function(){return e.plugins.spinnerDialog.hide()}}}]),angular.module("ngCordova.plugins.splashscreen",[]).factory("$cordovaSplashscreen",[function(){return{hide:function(){return navigator.splashscreen.hide()},show:function(){return navigator.splashscreen.show()}}}]),angular.module("ngCordova.plugins.sqlite",[]).factory("$cordovaSQLite",["$q","$window",function(e,n){return{openDB:function(e,r){return angular.isObject(e)&&!angular.isString(e)?("undefined"!=typeof r&&(e.bgType=r),n.sqlitePlugin.openDatabase(e)):n.sqlitePlugin.openDatabase({name:e,bgType:r})},execute:function(n,r,o){var t=e.defer();return n.transaction(function(e){e.executeSql(r,o,function(e,n){t.resolve(n)},function(e,n){t.reject(n)})}),t.promise},insertCollection:function(n,r,o){var t=e.defer(),i=o.slice(0);return n.transaction(function(e){!function n(){var o=i.splice(0,1)[0];try{e.executeSql(r,o,function(e,r){0===i.length?t.resolve(r):n()},function(e,n){t.reject(n)})}catch(a){t.reject(a)}}()}),t.promise},nestedExecute:function(n,r,o,t,i){var a=e.defer();return n.transaction(function(e){e.executeSql(r,t,function(e,n){a.resolve(n),e.executeSql(o,i,function(e,n){a.resolve(n)})})},function(e,n){a.reject(n)}),a.promise},deleteDB:function(r){var o=e.defer();return n.sqlitePlugin.deleteDatabase(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise}}}]),angular.module("ngCordova.plugins.statusbar",[]).factory("$cordovaStatusbar",[function(){return{overlaysWebView:function(e){return StatusBar.overlaysWebView(!!e)},STYLES:{DEFAULT:0,LIGHT_CONTENT:1,BLACK_TRANSLUCENT:2,BLACK_OPAQUE:3},style:function(e){switch(e){case 0:return StatusBar.styleDefault();case 1:return StatusBar.styleLightContent();case 2:return StatusBar.styleBlackTranslucent();case 3:return StatusBar.styleBlackOpaque();default:return StatusBar.styleDefault()}},styleColor:function(e){return StatusBar.backgroundColorByName(e)},styleHex:function(e){return StatusBar.backgroundColorByHexString(e)},hide:function(){return StatusBar.hide()},show:function(){return StatusBar.show()},isVisible:function(){return StatusBar.isVisible}}}]),angular.module("ngCordova.plugins.toast",[]).factory("$cordovaToast",["$q","$window",function(e,n){return{showShortTop:function(r){var o=e.defer();return n.plugins.toast.showShortTop(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},showShortCenter:function(r){var o=e.defer();return n.plugins.toast.showShortCenter(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},showShortBottom:function(r){var o=e.defer();return n.plugins.toast.showShortBottom(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},showLongTop:function(r){var o=e.defer();return n.plugins.toast.showLongTop(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},showLongCenter:function(r){var o=e.defer();return n.plugins.toast.showLongCenter(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},showLongBottom:function(r){var o=e.defer();return n.plugins.toast.showLongBottom(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},showWithOptions:function(r){var o=e.defer();return n.plugins.toast.showWithOptions(r,function(e){o.resolve(e)},function(e){o.reject(e)}),o.promise},show:function(r,o,t){var i=e.defer();return n.plugins.toast.show(r,o,t,function(e){i.resolve(e)},function(e){i.reject(e)}),i.promise},hide:function(){var r=e.defer();try{n.plugins.toast.hide(),r.resolve()}catch(o){r.reject(o&&o.message)}return r.promise}}}]),angular.module("ngCordova.plugins.touchid",[]).factory("$cordovaTouchID",["$q",function(e){return{checkSupport:function(){var n=e.defer();return window.cordova?touchid.checkSupport(function(e){n.resolve(e)},function(e){n.reject(e)}):n.reject("Not supported without cordova.js"),n.promise},authenticate:function(n){var r=e.defer();return window.cordova?touchid.authenticate(function(e){r.resolve(e)},function(e){r.reject(e)},n):r.reject("Not supported without cordova.js"),r.promise}}}]),angular.module("ngCordova.plugins.tts",[]).factory("$cordovaTTS",function(){return{speak:function(e,n,r){return TTS.speak(e,n,r)}}}),angular.module("ngCordova.plugins.upsPush",[]).factory("$cordovaUpsPush",["$q","$window","$rootScope","$timeout",function(e,n,r,o){return{register:function(t){var i=e.defer();return n.push.register(function(e){o(function(){r.$broadcast("$cordovaUpsPush:notificationReceived",e)})},function(){i.resolve()},function(e){i.reject(e)},t),i.promise},unregister:function(r){var o=e.defer();return n.push.unregister(function(){o.resolve()},function(e){o.reject(e)},r),o.promise},setBadgeNumber:function(r){var o=e.defer();return n.push.setApplicationIconBadgeNumber(function(){o.resolve()},r),o.promise}}}]),angular.module("ngCordova.plugins.vibration",[]).factory("$cordovaVibration",[function(){return{vibrate:function(e){return navigator.notification.vibrate(e)},vibrateWithPattern:function(e,n){return navigator.notification.vibrateWithPattern(e,n)},cancelVibration:function(){return navigator.notification.cancelVibration()}}}]),angular.module("ngCordova.plugins.videoCapturePlus",[]).provider("$cordovaVideoCapturePlus",[function(){var e={};this.setLimit=function(n){e.limit=n},this.setMaxDuration=function(n){e.duration=n},this.setHighQuality=function(n){e.highquality=n},this.useFrontCamera=function(n){e.frontcamera=n},this.setPortraitOverlay=function(n){e.portraitOverlay=n},this.setLandscapeOverlay=function(n){e.landscapeOverlay=n},this.setOverlayText=function(n){e.overlayText=n},this.$get=["$q","$window",function(n,r){return{captureVideo:function(o){var t=n.defer();return r.plugins.videocaptureplus?(r.plugins.videocaptureplus.captureVideo(t.resolve,t.reject,angular.extend({},e,o)),t.promise):(t.resolve(null),t.promise)}}}]}]),angular.module("ngCordova.plugins.zip",[]).factory("$cordovaZip",["$q","$window",function(e,n){return{unzip:function(r,o){var t=e.defer();return n.zip.unzip(r,o,function(e){0===e?t.resolve():t.reject()},function(e){t.notify(e)}),t.promise}}}])}();
 "undefined"!=typeof module&&"undefined"!=typeof exports&&module.exports===exports&&(module.exports="ng-token-auth"),angular.module("ng-token-auth",["ipCookie"]).provider("$auth",function(){var t,e;return t={"default":{apiUrl:"/api",signOutUrl:"/auth/sign_out",emailSignInPath:"/auth/sign_in",emailRegistrationPath:"/auth",accountUpdatePath:"/auth",accountDeletePath:"/auth",confirmationSuccessUrl:function(){return window.location.href},passwordResetPath:"/auth/password",passwordUpdatePath:"/auth/password",passwordResetSuccessUrl:function(){return window.location.href},tokenValidationPath:"/auth/validate_token",proxyIf:function(){return!1},proxyUrl:"/proxy",validateOnPageLoad:!0,omniauthWindowType:"sameWindow",storage:"cookies",forceValidateToken:!1,tokenFormat:{"access-token":"{{ token }}","token-type":"Bearer",client:"{{ clientId }}",expiry:"{{ expiry }}",uid:"{{ uid }}"},cookieOps:{path:"/",expires:9999,expirationUnit:"days",secure:!1},createPopup:function(t){return window.open(t,"_blank","closebuttoncaption=Cancel")},parseExpiry:function(t){return 1e3*parseInt(t.expiry,10)||null},handleLoginResponse:function(t){return t.data},handleAccountUpdateResponse:function(t){return t.data},handleTokenValidationResponse:function(t){return t.data},authProviderPaths:{github:"/auth/github",facebook:"/auth/facebook",google:"/auth/google_oauth2"}}},e="default",{configure:function(n){var r,i,s,a,o,u,c,h,d;if(n instanceof Array&&n.length){for(a=h=0,d=n.length;d>h;a=++h){r=n[a],u=null;for(o in r)c=r[o],u=o,0===a&&(e=u);i=angular.copy(t["default"]),s={},s[u]=angular.extend(i,r[u]),angular.extend(t,s)}"default"!==e&&delete t["default"]}else{if(!(n instanceof Object))throw"Invalid argument: ng-token-auth config should be an Array or Object.";angular.extend(t["default"],n)}return t},$get:["$http","$q","$location","ipCookie","$window","$timeout","$rootScope","$interpolate","$interval",function(n){return function(r,i,s,a,o,u,c,h,d){return{header:null,dfd:null,user:{},mustResetPassword:!1,listener:null,initialize:function(){return this.initializeListeners(),this.cancelOmniauthInAppBrowserListeners=function(){},this.addScopeMethods()},initializeListeners:function(){return this.listener=angular.bind(this,this.handlePostMessage),o.addEventListener?o.addEventListener("message",this.listener,!1):void 0},cancel:function(t){return null!=this.requestCredentialsPollingTimer&&u.cancel(this.requestCredentialsPollingTimer),this.cancelOmniauthInAppBrowserListeners(),null!=this.dfd&&this.rejectDfd(t),u(function(t){return function(){return t.requestCredentialsPollingTimer=null}}(this),0)},destroy:function(){return this.cancel(),o.removeEventListener?o.removeEventListener("message",this.listener,!1):void 0},handlePostMessage:function(t){var e,n;return"deliverCredentials"===t.data.message&&(delete t.data.message,n=t.data.oauth_registration,delete t.data.oauth_registration,this.handleValidAuth(t.data,!0),c.$broadcast("auth:login-success",t.data),n&&c.$broadcast("auth:oauth-registration",t.data)),"authFailure"===t.data.message?(e={reason:"unauthorized",errors:[t.data.error]},this.cancel(e),c.$broadcast("auth:login-error",e)):void 0},addScopeMethods:function(){return c.user=this.user,c.authenticate=angular.bind(this,this.authenticate),c.signOut=angular.bind(this,this.signOut),c.destroyAccount=angular.bind(this,this.destroyAccount),c.submitRegistration=angular.bind(this,this.submitRegistration),c.submitLogin=angular.bind(this,this.submitLogin),c.requestPasswordReset=angular.bind(this,this.requestPasswordReset),c.updatePassword=angular.bind(this,this.updatePassword),c.updateAccount=angular.bind(this,this.updateAccount),this.getConfig().validateOnPageLoad?this.validateUser({config:this.getSavedConfig()}):void 0},submitRegistration:function(t,e){var n;return null==e&&(e={}),n=this.getResultOrValue(this.getConfig(e.config).confirmationSuccessUrl),angular.extend(t,{confirm_success_url:n,config_name:this.getCurrentConfigName(e.config)}),r.post(this.apiUrl(e.config)+this.getConfig(e.config).emailRegistrationPath,t).success(function(e){return c.$broadcast("auth:registration-email-success",t)}).error(function(t){return c.$broadcast("auth:registration-email-error",t)})},submitLogin:function(t,e,n){return null==e&&(e={}),null==n&&(n={}),this.initDfd(),r.post(this.apiUrl(e.config)+this.getConfig(e.config).emailSignInPath,t,n).success(function(t){return function(n){var r;return t.setConfigName(e.config),r=t.getConfig(e.config).handleLoginResponse(n,t),t.handleValidAuth(r),c.$broadcast("auth:login-success",t.user)}}(this)).error(function(t){return function(e){return t.rejectDfd({reason:"unauthorized",errors:["Invalid credentials"]}),c.$broadcast("auth:login-error",e)}}(this)),this.dfd.promise},userIsAuthenticated:function(){return this.retrieveData("auth_headers")&&this.user.signedIn&&!this.tokenHasExpired()},requestPasswordReset:function(t,e){var n;return null==e&&(e={}),n=this.getResultOrValue(this.getConfig(e.config).passwordResetSuccessUrl),t.redirect_url=n,null!=e.config&&(t.config_name=e.config),r.post(this.apiUrl(e.config)+this.getConfig(e.config).passwordResetPath,t).success(function(e){return c.$broadcast("auth:password-reset-request-success",t)}).error(function(t){return c.$broadcast("auth:password-reset-request-error",t)})},updatePassword:function(t){return r.put(this.apiUrl()+this.getConfig().passwordUpdatePath,t).success(function(t){return function(e){return c.$broadcast("auth:password-change-success",e),t.mustResetPassword=!1}}(this)).error(function(t){return c.$broadcast("auth:password-change-error",t)})},updateAccount:function(t){return r.put(this.apiUrl()+this.getConfig().accountUpdatePath,t).success(function(t){return function(e){var n,r,i,s,a,o;if(s=t.getConfig().handleAccountUpdateResponse(e),n=t.retrieveData("auth_headers"),angular.extend(t.user,s),n){i={},o=t.getConfig().tokenFormat;for(r in o)a=o[r],n[r]&&s[r]&&(i[r]=s[r]);t.setAuthHeaders(i)}return c.$broadcast("auth:account-update-success",e)}}(this)).error(function(t){return c.$broadcast("auth:account-update-error",t)})},destroyAccount:function(t){return r["delete"](this.apiUrl()+this.getConfig().accountUpdatePath,t).success(function(t){return function(e){return t.invalidateTokens(),c.$broadcast("auth:account-destroy-success",e)}}(this)).error(function(t){return c.$broadcast("auth:account-destroy-error",t)})},authenticate:function(t,e){return null==e&&(e={}),null==this.dfd&&(this.setConfigName(e.config),this.initDfd(),this.openAuthWindow(t,e)),this.dfd.promise},setConfigName:function(t){return null==t&&(t=e),this.persistData("currentConfigName",t,t)},openAuthWindow:function(t,e){var n,r;if(r=this.getConfig(e.config).omniauthWindowType,n=this.buildAuthUrl(r,t,e),"newWindow"===r)return this.requestCredentialsViaPostMessage(this.getConfig().createPopup(n));if("inAppBrowser"===r)return this.requestCredentialsViaExecuteScript(this.getConfig().createPopup(n));if("sameWindow"===r)return this.visitUrl(n);throw'Unsupported omniauthWindowType "#{omniauthWindowType}"'},visitUrl:function(t){return o.location.replace(t)},buildAuthUrl:function(t,e,n){var r,i,s,a;null==n&&(n={}),r=this.getConfig(n.config).apiUrl,r+=this.getConfig(n.config).authProviderPaths[e],r+="?auth_origin_url="+encodeURIComponent(o.location.href),s=angular.extend({},n.params||{},{omniauth_window_type:t});for(i in s)a=s[i],r+="&",r+=encodeURIComponent(i),r+="=",r+=encodeURIComponent(a);return r},requestCredentialsViaPostMessage:function(t){return t.closed?this.handleAuthWindowClose(t):(t.postMessage("requestCredentials","*"),this.requestCredentialsPollingTimer=u(function(e){return function(){return e.requestCredentialsViaPostMessage(t)}}(this),500))},requestCredentialsViaExecuteScript:function(t){var e,n;return this.cancelOmniauthInAppBrowserListeners(),e=this.handleAuthWindowClose.bind(this,t),n=this.handleLoadStop.bind(this,t),t.addEventListener("loadstop",n),t.addEventListener("exit",e),this.cancelOmniauthInAppBrowserListeners=function(){return t.removeEventListener("loadstop",n),t.removeEventListener("exit",e)}},handleLoadStop:function(t){return n=this,t.executeScript({code:"requestCredentials()"},function(e){var r,i;return r=e[0],r?(i=new Event("message"),i.data=r,n.cancelOmniauthInAppBrowserListeners(),o.dispatchEvent(i),n.initDfd(),t.close()):void 0})},handleAuthWindowClose:function(t){return this.cancel({reason:"unauthorized",errors:["User canceled login"]}),this.cancelOmniauthInAppBrowserListeners,c.$broadcast("auth:window-closed")},resolveDfd:function(){return this.dfd.resolve(this.user),u(function(t){return function(){return t.dfd=null,c.$$phase?void 0:c.$digest()}}(this),0)},buildQueryString:function(t,e){var n,r,i,s;i=[];for(r in t)s=t[r],r=e?e+"["+r+"]":r,n=angular.isObject(s)?this.buildQueryString(s,r):r+"="+encodeURIComponent(s),i.push(n);return i.join("&")},parseLocation:function(t){var e,n,r,i,s;if(n=t.substring(1),r={},n){s=n.split("&"),i=void 0,e=void 0;for(e in s)e=e,""!==s[e]&&"function"!=typeof s[e]&&(i=s[e].split("="),r[decodeURIComponent(i[0])]=decodeURIComponent(i[1]))}return r},validateUser:function(t){var e,n,r,i,a,o,u,h,d;return null==t&&(t={}),n=t.config,null==this.dfd&&(this.initDfd(),this.userIsAuthenticated()?this.resolveDfd():(o=s.search(),i=this.parseLocation(window.location.search),a=0===Object.keys(o).length?i:o,u=a.auth_token||a.token,void 0!==u?(e=a.client_id,h=a.uid,r=a.expiry,n=a.config,this.setConfigName(n),this.mustResetPassword=a.reset_password,this.firstTimeLogin=a.account_confirmation_success,this.oauthRegistration=a.oauth_registration,this.setAuthHeaders(this.buildAuthHeaders({token:u,clientId:e,uid:h,expiry:r})),d=s.path()||"/",["auth_token","token","client_id","uid","expiry","config","reset_password","account_confirmation_success","oauth_registration"].forEach(function(t){return delete a[t]}),Object.keys(a).length>0&&(d+="?"+this.buildQueryString(a)),s.url(d)):this.retrieveData("currentConfigName")&&(n=this.retrieveData("currentConfigName")),this.getConfig().forceValidateToken?this.validateToken({config:n}):isEmpty(this.retrieveData("auth_headers"))?(this.rejectDfd({reason:"unauthorized",errors:["No credentials"]}),c.$broadcast("auth:invalid")):this.tokenHasExpired()?(c.$broadcast("auth:session-expired"),this.rejectDfd({reason:"unauthorized",errors:["Session expired."]})):this.validateToken({config:n}))),this.dfd.promise},validateToken:function(t){return null==t&&(t={}),this.tokenHasExpired()?this.rejectDfd({reason:"unauthorized",errors:["Expired credentials"]}):r.get(this.apiUrl(t.config)+this.getConfig(t.config).tokenValidationPath).success(function(e){return function(n){var r;return r=e.getConfig(t.config).handleTokenValidationResponse(n),e.handleValidAuth(r),e.firstTimeLogin&&c.$broadcast("auth:email-confirmation-success",e.user),e.oauthRegistration&&c.$broadcast("auth:oauth-registration",e.user),e.mustResetPassword&&c.$broadcast("auth:password-reset-confirm-success",e.user),c.$broadcast("auth:validation-success",e.user)}}(this)).error(function(t){return function(e){return t.firstTimeLogin&&c.$broadcast("auth:email-confirmation-error",e),t.mustResetPassword&&c.$broadcast("auth:password-reset-confirm-error",e),c.$broadcast("auth:validation-error",e),t.rejectDfd({reason:"unauthorized",errors:null!=e?e.errors:["Unspecified error"]})}}(this))},tokenHasExpired:function(){var t,e;return t=this.getExpiry(),e=(new Date).getTime(),t&&e>t},getExpiry:function(){return this.getConfig().parseExpiry(this.retrieveData("auth_headers")||{})},invalidateTokens:function(){var t,e,n;n=this.user;for(t in n)e=n[t],delete this.user[t];return this.deleteData("currentConfigName"),null!=this.timer&&d.cancel(this.timer),this.deleteData("auth_headers")},signOut:function(){return r["delete"](this.apiUrl()+this.getConfig().signOutUrl).success(function(t){return function(e){return t.invalidateTokens(),c.$broadcast("auth:logout-success")}}(this)).error(function(t){return function(e){return t.invalidateTokens(),c.$broadcast("auth:logout-error",e)}}(this))},handleValidAuth:function(t,e){return null==e&&(e=!1),null!=this.requestCredentialsPollingTimer&&u.cancel(this.requestCredentialsPollingTimer),this.cancelOmniauthInAppBrowserListeners(),angular.extend(this.user,t),this.user.signedIn=!0,this.user.configName=this.getCurrentConfigName(),e&&this.setAuthHeaders(this.buildAuthHeaders({token:this.user.auth_token,clientId:this.user.client_id,uid:this.user.uid,expiry:this.user.expiry})),this.resolveDfd()},buildAuthHeaders:function(t){var e,n,r,i;e={},i=this.getConfig().tokenFormat;for(n in i)r=i[n],e[n]=h(r)(t);return e},persistData:function(t,e,n){if(this.getConfig(n).storage instanceof Object)return this.getConfig(n).storage.persistData(t,e,this.getConfig(n));switch(this.getConfig(n).storage){case"localStorage":return o.localStorage.setItem(t,JSON.stringify(e));case"sessionStorage":return o.sessionStorage.setItem(t,JSON.stringify(e));default:return a(t,e,this.getConfig().cookieOps)}},retrieveData:function(t){var e;try{if(this.getConfig().storage instanceof Object)return this.getConfig().storage.retrieveData(t);switch(this.getConfig().storage){case"localStorage":return JSON.parse(o.localStorage.getItem(t));case"sessionStorage":return JSON.parse(o.sessionStorage.getItem(t));default:return a(t)}}catch(n){if(e=n,e instanceof SyntaxError)return void 0;throw e}},deleteData:function(t){switch(this.getConfig().storage instanceof Object&&this.getConfig().storage.deleteData(t),this.getConfig().storage){case"localStorage":return o.localStorage.removeItem(t);case"sessionStorage":return o.sessionStorage.removeItem(t);default:return a.remove(t,{path:this.getConfig().cookieOps.path})}},setAuthHeaders:function(t){var e,n,r,i;return n=angular.extend(this.retrieveData("auth_headers")||{},t),i=this.persistData("auth_headers",n),e=this.getExpiry(),r=(new Date).getTime(),e>r&&(null!=this.timer&&d.cancel(this.timer),this.timer=d(function(t){return function(){return t.validateUser({config:t.getSavedConfig()})}}(this),parseInt(e-r),1)),i},initDfd:function(){return this.dfd=i.defer()},rejectDfd:function(t){return this.invalidateTokens(),null!=this.dfd?(this.dfd.reject(t),u(function(t){return function(){return t.dfd=null}}(this),0)):void 0},apiUrl:function(t){return this.getConfig(t).proxyIf()?this.getConfig(t).proxyUrl:this.getConfig(t).apiUrl},getConfig:function(e){return t[this.getCurrentConfigName(e)]},getResultOrValue:function(t){return"function"==typeof t?t():t},getCurrentConfigName:function(t){return t||this.getSavedConfig()},getSavedConfig:function(){var t,n;return t=void 0,n="currentConfigName",this.hasLocalStorage()?null==t&&(t=JSON.parse(o.localStorage.getItem(n))):this.hasSessionStorage()&&null==t&&(t=JSON.parse(o.sessionStorage.getItem(n))),null==t&&(t=a(n)),t||e},hasSessionStorage:function(){var t;if(null==this._hasSessionStorage){this._hasSessionStorage=!1;try{o.sessionStorage.setItem("ng-token-auth-test","ng-token-auth-test"),o.sessionStorage.removeItem("ng-token-auth-test"),this._hasSessionStorage=!0}catch(e){t=e}}return this._hasSessionStorage},hasLocalStorage:function(){var t;if(null==this._hasLocalStorage){this._hasLocalStorage=!1;try{o.localStorage.setItem("ng-token-auth-test","ng-token-auth-test"),o.localStorage.removeItem("ng-token-auth-test"),this._hasLocalStorage=!0}catch(e){t=e}}return this._hasLocalStorage}}}}(this)]}}).config(["$httpProvider",function(t){var e,n,r;return n=function(t,e){var n,r;return r=Number(t.getExpiry()),n=Number(t.getConfig().parseExpiry(e||{})),n>=r},r=function(t,e){var r,i,s,a;i={},a=t.getConfig().tokenFormat;for(r in a)s=a[r],e.headers(r)&&(i[r]=e.headers(r));return n(t,i)?t.setAuthHeaders(i):void 0},t.interceptors.push(["$injector",function(t){return{request:function(e){return t.invoke(["$http","$auth",function(t,n){var r,i,s,a;if(e.url.match(n.apiUrl())){s=n.retrieveData("auth_headers"),a=[];for(r in s)i=s[r],a.push(e.headers[r]=i);return a}}]),e},response:function(e){return t.invoke(["$http","$auth",function(t,n){return e.config.url.match(n.apiUrl())?r(n,e):void 0}]),e},responseError:function(e){return t.invoke(["$http","$auth",function(t,n){return e.config.url.match(n.apiUrl())?r(n,e):void 0}]),t.get("$q").reject(e)}}}]),e=["get","post","put","patch","delete"],angular.forEach(e,function(e){var n;return null==(n=t.defaults.headers)[e]&&(n[e]={}),t.defaults.headers[e]["If-Modified-Since"]="Mon, 26 Jul 1997 05:00:00 GMT"})}]).run(["$auth","$window","$rootScope",function(t,e,n){return t.initialize()}]),window.isOldIE=function(){var t,e,n;return e=!1,t=navigator.userAgent.toLowerCase(),t&&-1!==t.indexOf("msie")&&(n=parseInt(t.split("msie")[1]),10>n&&(e=!0)),e},window.isIE=function(){var t;return t=navigator.userAgent.toLowerCase(),t&&-1!==t.indexOf("msie")||!!navigator.userAgent.match(/Trident.*rv\:11\./)},window.isEmpty=function(t){var e,n;if(!t)return!0;if(t.length>0)return!1;if(0===t.length)return!0;for(e in t)if(n=t[e],Object.prototype.hasOwnProperty.call(t,e))return!1;return!0};
 angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).factory("ipCookie",["$document",function(e){"use strict";function i(e){try{return decodeURIComponent(e)}catch(i){}}return function(){function t(t,n,r){var o,s,p,u,a,c,d,x,f;r=r||{};var g=r.decode||i,l=r.encode||encodeURIComponent;if(void 0!==n)return n="object"==typeof n?JSON.stringify(n):n+"","number"==typeof r.expires&&(f=r.expires,r.expires=new Date,-1===f?r.expires=new Date("Thu, 01 Jan 1970 00:00:00 GMT"):void 0!==r.expirationUnit?"hours"===r.expirationUnit?r.expires.setHours(r.expires.getHours()+f):"minutes"===r.expirationUnit?r.expires.setMinutes(r.expires.getMinutes()+f):"seconds"===r.expirationUnit?r.expires.setSeconds(r.expires.getSeconds()+f):"milliseconds"===r.expirationUnit?r.expires.setMilliseconds(r.expires.getMilliseconds()+f):r.expires.setDate(r.expires.getDate()+f):r.expires.setDate(r.expires.getDate()+f)),e[0].cookie=[l(t),"=",l(n),r.expires?"; expires="+r.expires.toUTCString():"",r.path?"; path="+r.path:"",r.domain?"; domain="+r.domain:"",r.secure?"; secure":""].join("");for(s=[],x=e[0].cookie,x&&(s=x.split("; ")),o={},d=!1,p=0;s.length>p;++p)if(s[p]){if(u=s[p],a=u.indexOf("="),c=u.substring(0,a),n=g(u.substring(a+1)),angular.isUndefined(n))continue;if(void 0===t||t===c){try{o[c]=JSON.parse(n)}catch(m){o[c]=n}if(t===c)return o[c];d=!0}}return d&&void 0===t?o:void 0}return t.remove=function(e,i){var n=void 0!==t(e);return n&&(i||(i={}),i.expires=-1,t(e,"",i)),n},t}()}]);
-var app = angular.module('yogabrasilia', ['ionic', 'ngCordova', 'ng-token-auth', 'ipCookie'])
-
-app.run(function($ionicPlatform, $cordovaInAppBrowser){
-	$ionicPlatform.ready(function(){
-		// Make sure window.open opens inside the app ######## UNCOMENT BEFORE PRODUCTION ##############
-		window.open = $cordovaInAppBrowser.open
-	})
-})
-
-
-app.config(function($authProvider){
-	// Setting up ng-token-auth
-	$authProvider.configure({
-		apiUrl: 'http://smartmarket.io/api/v1',
-		// Change to inAppBrowser before production
-		omniauthWindowType: 'inAppBrowser',
-		storage: 'localStorage',
-		handleLoginResponse: function(res){ return res.data },
-		handleAccountUpdateResponse: function(res){ return res.data },
-		handleTokenValidationResponse: function(res){ return res.data },
-		confirmationSuccessUrl: window.location.href
-	});
-})
-
-// Re Factorying the ionick clickblock to prevent ionic from delaying clicks when changing tabs
-app.factory('$ionicClickBlock', function($document, $ionicBody, $timeout){
-	return {
-		show: function(){},
-		hide: function(){}
+(function(){
+	angular.module('yogabrasilia', ['ionic', 'ngCordova', 'ng-token-auth', 'ipCookie'])
+})();
+// Setting up ng-token-auth
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$authProvider'];
+	function command($authProvider){
+		$authProvider.configure({
+			apiUrl: 'http://smartmarket.io/api/v1',
+			// Change to inAppBrowser before production
+			omniauthWindowType: 'inAppBrowser',
+			storage: 'localStorage',
+			handleLoginResponse: function(res){ return res.data },
+			handleAccountUpdateResponse: function(res){ return res.data },
+			handleTokenValidationResponse: function(res){ return res.data },
+			confirmationSuccessUrl: window.location.href
+		});
 	}
-})
-app.controller('LoginController', function($state, $auth){
-	// $auth.destroyAccount()
-	// If app instance is being created or re-created, try validationg the user
-	$auth.validateUser()
-	.then(function(user){
-		$state.go('main.tabs.publications');
-	})
-	.catch(function(err){
-		$state.go('login.intro')
-	})
+})();
 
-})
-app.controller('MainController', function($scope, $state, $auth, $ionicSideMenuDelegate){
-	$ionicSideMenuDelegate.edgeDragThreshold(100);
-
-	$scope.view = {
-		title: 'Inicio'
-	}
-
-	$auth.validateUser()
-	.then(function(user){
-		console.log(user)
-		$scope.user = user
-	})
-	.catch(function(err){
-		$state.go('login.auth')
-	})
-})
-app.controller('CallbackController', function($scope){
-	var user = $state.params
-
-
-})
-app.controller('AuthController', function($scope, $timeout, $auth, $state, ipCookie, $ionicModal){
-	// Init Scope slider
-	$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
-		// data.slider is the instance of Swiper (Slider)
-		$scope.s = data.slider;
-
-		// // Animate Tab indicator on "slide" change
-		$scope.s.on('progress', function(swiper, progress){
-			$('#auth-page-indicator').css({left:  50 * progress + '%'});
-		})
-	});
-
-
-	// Go To slide function
-	$scope.goToSlide = function( dest ){
-		$scope.s.slideTo(dest)
-	}
-
-	// Email Login Flow
-	$ionicModal.fromTemplateUrl('views/emailModal.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	})
-	.then(function( modal ){
-		$scope.eModal = modal;
-	})
-
-	$scope.openEmailFlow = function( flow ){
-		if(flow == 0){
-			$scope.emailLogin = true;
-		}
-		else{
-			$scope.emailLogin = false;
-		}
-
-		$scope.eModal.show();
-	}
-
-	$scope.closeEmailFlow = function(){
-		$scope.eModal.hide();
-	}
-
-	$scope.$on('$destroy', function(){
-		$scope.eModal.remove();
-	})
-
-	$scope.doEmailLogin = function(){
-		$auth.submitLogin($scope.emailData)
-		.then(function( user ){
-			console.log(user)
-			// On sucess login, set the user type on the server
-			// $auth.changeUser( 'user_type': ipCookie('user_type') )
-			$state.go('main.tabs.publications')
-		})
-		.catch(function( err ){
-			console.log(err)
-		})
-	}
-
-
-
-
-	// oAuth login Flow
-	$scope.oauthLogin = function( provider ){
-		$auth.authenticate(provider)
+// app.factory('$ionicClickBlock', function($document, $ionicBody, $timeout){
+// 	return {
+// 		show: function(){},
+// 		hide: function(){}
+// 	}
+// })
+(function(){
+	angular.module('yogabrasilia').controller('LoginController', ctrl)
+	ctrl.$inject = ['$state', '$auth']
+	function ctrl($state, $auth){
+		// $auth.destroyAccount()
+		// If app instance is being created or re-created, try validationg the user
+		$auth.validateUser()
 		.then(function(user){
-			console.log(user)
-			// On sucess login, set the user type on the server
-			// $auth.changeUser( 'user_type': ipCookie('user_type') )
-			$state.go('main.tabs.publications')
+			$state.go('main.tabs.publications');
 		})
 		.catch(function(err){
-			console.log(err)
+			$state.go('login.intro')
 		})
 	}
-})
-app.controller('IntroController', function($scope, $state, $timeout, ipCookie){
-	$timeout(function(){
-		$('#login-logo-holder').css({
-				'-webkit-transform': 'scale(1)',
-				'-moz-transform': 'scale(1)',
-				'-ms-transform': 'scale(1)',
-				'-o-transform': 'scale(1)',
-				'transform': 'scale(1)',
-				'opacity': 1
+})();
+(function(){
+	angular.module('yogabrasilia').controller('MainController', ctrl);
+	ctrl.$inject = ['$scope', '$state', '$auth', '$ionicSideMenuDelegate'];
+	function ctrl($scope, $state, $auth, $ionicSideMenuDelegate){
+		$ionicSideMenuDelegate.edgeDragThreshold(100);
+
+		$scope.view = {
+			title: 'Inicio'
+		}
+
+		$auth.validateUser()
+		.then(function(user){
+			console.log(user)
+			$scope.user = user
+		})
+		// .catch(function(err){
+		// 	$state.go('login.auth')
+		// })
+		}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('CallbackController', ctrl)
+	ctrl.$inject = ['$state']
+	function ctrl($state){
+		var user = $state.params
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('AuthController', ctrl)
+	ctrl.$inject = ['$scope', '$timeout', '$auth', '$state', 'ipCookie', '$ionicModal']
+	function ctrl($scope, $timeout, $auth, $state, ipCookie, $ionicModal){
+		// Init Scope slider
+		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+			// data.slider is the instance of Swiper (Slider)
+			$scope.s = data.slider;
+
+			// // Animate Tab indicator on "slide" change
+			$scope.s.on('progress', function(swiper, progress){
+				$('#auth-page-indicator').css({left:  50 * progress + '%'});
 			})
-	}, 365)
-
-	$timeout(function(){
-		$('#login-user-type-select-holder').animate({'opacity': 1}, 225, 'swing')
-	}, 550)
+		});
 
 
-	$scope.go = function( dest ){
-		var destiny = String(dest);
-		ipCookie('user_type', destiny)
-		$state.go('login.' + destiny )
-	}
-})
-app.controller('ProfController', function($scope, $state){
+		// Go To slide function
+		$scope.goToSlide = function( dest ){
+			$scope.s.slideTo(dest)
+		}
 
-	$scope.canGoBack = false;
-	$scope.canGoForward = true;
-
-	$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
-			$scope.slider = data.slider;
-	});
-
-
-	$scope.next = function(){
-		console.log('Here')
-		$scope.slider.slideNext();
-	}
-
-	$scope.prev = function(){
-		$scope.slider.slidePrev();
-	}
-
-	$scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
-		$scope.$apply(function(){
-			switch(data.slider.activeIndex){
-				case 0:
-						$scope.canGoBack = false
-						$scope.canGoForward = true
-						break;
-				case 1:
-						$scope.canGoBack = true
-						$scope.canGoForward = true
-						break;
-				case 2:
-						$scope.canGoBack = true
-						$scope.canGoForward = true
-						break;
-				case 3:
-						$scope.canGoBack = true
-						$scope.canGoForward = false
-						break;
-			}
+		// Email Login Flow
+		$ionicModal.fromTemplateUrl('views/emailModal.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
 		})
-	});
-})
-app.controller('RecoverController', function(){})
-app.controller('StudentController', function($scope, $state){
-	$scope.canGoBack = false;
-	$scope.canGoForward = true;
-
-	$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
-			$scope.slider = data.slider;
-	});
-
-
-	$scope.next = function(){
-		console.log('Here')
-		$scope.slider.slideNext();
-	}
-
-	$scope.prev = function(){
-		$scope.slider.slidePrev();
-	}
-
-	$scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
-		$scope.$apply(function(){
-			switch(data.slider.activeIndex){
-				case 0:
-						$scope.canGoBack = false
-						$scope.canGoForward = true
-						break;
-				case 1:
-						$scope.canGoBack = true
-						$scope.canGoForward = true
-						break;
-				case 2:
-						$scope.canGoBack = true
-						$scope.canGoForward = true
-						break;
-				case 3:
-						$scope.canGoBack = true
-						$scope.canGoForward = false
-						break;
-			}
+		.then(function( modal ){
+			$scope.eModal = modal;
 		})
-	});
-})
-app.controller('CardController', function(){})
-app.controller('ChatController', function(){})
-app.controller('CreateController', function(){})
-app.controller('EditController', function(){})
-app.controller('NotificationsController', function(){})
-app.controller('PremiumController', function(){})
-app.controller('ProfileController', function(){})
-app.controller('PublicationController', function(){})
-app.controller('TabsController', function($scope, $state, $timeout){
 
-	$scope.sliderOptions = {
-		initialSlide: 1,
-		preloadImages: true,
-		touchReleaseOnEdges: true
-	}
+		$scope.openEmailFlow = function( flow ){
+			if(flow == 0){
+				$scope.emailLogin = true;
+			}
+			else{
+				$scope.emailLogin = false;
+			}
 
-	$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
-		$scope.s = data.slider;
-		
+			$scope.eModal.show();
+		}
 
-		
-	});
+		$scope.closeEmailFlow = function(){
+			$scope.eModal.hide();
+		}
 
+		$scope.$on('$destroy', function(){
+			$scope.eModal.remove();
+		})
 
-	// Animate Tab indicator on "slide" change
-	$scope.$on("$ionicSlides.slideChangeStart", function(event, data){
-		console.log(event)
-		switch(data.slider.activeIndex){
-			case 0:
-				// Timeout is used here to make the comand run inside angular digest cycle
-				$state.go('main.tabs.cards')
-				break;
-			case 1:
-				// Timeout is used here to make the comand run inside angular digest cycle
+		$scope.doEmailLogin = function(){
+			$auth.submitLogin($scope.emailData)
+			.then(function( user ){
+				console.log(user)
+				// On sucess login, set the user type on the server
+				// $auth.changeUser( 'user_type': ipCookie('user_type') )
 				$state.go('main.tabs.publications')
-				break;
-			case 2:
-				$state.go('main.tabs.chats')
-				break;
+			})
+			.catch(function( err ){
+				console.log(err)
+			})
 		}
-	});
-})
-app.controller('CardsController', function(){})
-app.controller('ChatsController', function(){})
-app.controller('PublicationsController', function(){})
-app.config(function($urlRouterProvider) {
-	$urlRouterProvider.otherwise('/login/intro');
-});
-app.config(function($stateProvider){
-	$stateProvider.state('login', {
-		url: '/login',
-		abstract: true,
-		templateUrl: 'views/loginView.html',
-		controller: 'LoginController'
-	})
-})
-app.config(function($stateProvider){
-	$stateProvider.state('main', {
-		url: '/main',
-		abstract: true,
-		templateUrl: 'views/mainView.html',
-		controller: 'MainController'
-	})
-})
-app.config(function($stateProvider){
-	$stateProvider.state('login.callback', {
-		url: '/callback',
-		views: {
-			'login-window': {
-				templateUrl: 'views/authCallbackView.html',
-				controller: 'CallbackController'
+
+
+
+
+		// oAuth login Flow
+		$scope.oauthLogin = function( provider ){
+			$auth.authenticate(provider)
+			.then(function(user){
+				console.log(user)
+				// On sucess login, set the user type on the server
+				// $auth.changeUser( 'user_type': ipCookie('user_type') )
+				$state.go('main.tabs.publications')
+			})
+			.catch(function(err){
+				console.log(err)
+			})
+		}
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('IntroController', ctrl)
+	ctrl.$inject = ['$scope', '$state', '$timeout', 'ipCookie']
+	function ctrl($scope, $state, $timeout, ipCookie){
+		$timeout(function(){
+			$('#login-logo-holder').css({
+					'-webkit-transform': 'scale(1)',
+					'-moz-transform': 'scale(1)',
+					'-ms-transform': 'scale(1)',
+					'-o-transform': 'scale(1)',
+					'transform': 'scale(1)',
+					'opacity': 1
+				})
+		}, 365)
+
+		$timeout(function(){
+			$('#login-user-type-select-holder').animate({'opacity': 1}, 225, 'swing')
+		}, 550)
+
+
+		$scope.go = function( dest ){
+			var destiny = String(dest);
+			ipCookie('user_type', destiny)
+			$state.go('login.' + destiny )
+		}
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('ProfController', ctrl)
+	ctrl.$inject = ['$scope', '$state']
+	function ctrl($scope, $state){
+		$scope.canGoBack = false;
+		$scope.canGoForward = true;
+
+		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+				$scope.slider = data.slider;
+		});
+
+
+		$scope.next = function(){
+			$scope.slider.slideNext();
+		}
+
+		$scope.prev = function(){
+			$scope.slider.slidePrev();
+		}
+
+		$scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
+			$scope.$apply(function(){
+				switch(data.slider.activeIndex){
+					case 0:
+							$scope.canGoBack = false
+							$scope.canGoForward = true
+							break;
+					case 1:
+							$scope.canGoBack = true
+							$scope.canGoForward = true
+							break;
+					case 2:
+							$scope.canGoBack = true
+							$scope.canGoForward = true
+							break;
+					case 3:
+							$scope.canGoBack = true
+							$scope.canGoForward = false
+							break;
+				}
+			})
+		});
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('RecoverController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('StudentController', ctrl)
+	ctrl.$inject = ['$scope', '$state']
+	function ctrl($scope, $state){
+		$scope.canGoBack = false;
+		$scope.canGoForward = true;
+
+		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+				$scope.slider = data.slider;
+		});
+
+
+		$scope.next = function(){
+			$scope.slider.slideNext();
+		}
+
+		$scope.prev = function(){
+			$scope.slider.slidePrev();
+		}
+
+		$scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
+			$scope.$apply(function(){
+				switch(data.slider.activeIndex){
+					case 0:
+							$scope.canGoBack = false
+							$scope.canGoForward = true
+							break;
+					case 1:
+							$scope.canGoBack = true
+							$scope.canGoForward = true
+							break;
+					case 2:
+							$scope.canGoBack = true
+							$scope.canGoForward = true
+							break;
+					case 3:
+							$scope.canGoBack = true
+							$scope.canGoForward = false
+							break;
+				}
+			})
+		});
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('CardController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('ChatController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('CreateController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('EditController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('NotificationsController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('PremiumController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('PublicationController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('ProfileController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('TabsController', ctrl)
+	ctrl.$inject = ['$scope', '$state', '$timeout']
+	function ctrl($scope, $state, $timeout){
+		$scope.sliderOptions = {
+			initialSlide: 1,
+			preloadImages: true,
+			touchReleaseOnEdges: true
+		}
+
+		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+			$scope.s = data.slider;
+			
+
+			
+		});
+
+
+		// // Animate Tab indicator on "slide" change
+		// $scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+		// 	console.log(event)
+		// 	switch(data.slider.activeIndex){
+		// 		case 0:
+		// 			// Timeout is used here to make the comand run inside angular digest cycle
+		// 			$state.go('main.tabs.cards')
+		// 			break;
+		// 		case 1:
+		// 			// Timeout is used here to make the comand run inside angular digest cycle
+		// 			$state.go('main.tabs.publications')
+		// 			break;
+		// 		case 2:
+		// 			$state.go('main.tabs.chats')
+		// 			break;
+		// 	}
+		// });
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('CardsController', ctrl)
+	ctrl.$inject = ['$mock']
+	function ctrl($mock){
+		this.cards = $mock.get('cards');
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('ChatsController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
+	angular.module('yogabrasilia').controller('PublicationsController', ctrl)
+	ctrl.$inject = ['$mock']
+	function ctrl($mock){
+		this.pubs = $mock.get('pubs');
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$urlRouterProvider']
+	function command($urlRouterProvider){
+		$urlRouterProvider.otherwise('/login/intro');
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider']
+	function command($stateProvider){
+		$stateProvider.state('login', {
+			url: '/login',
+			abstract: true,
+			templateUrl: 'views/loginView.html',
+			controller: 'LoginController'
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider']
+	function command($stateProvider){
+		$stateProvider.state('main', {
+			url: '/main',
+			abstract: true,
+			templateUrl: 'views/mainView.html',
+			controller: 'MainController'
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('login.callback', {
+			url: '/callback',
+			views: {
+				'login-window': {
+					templateUrl: 'views/authCallbackView.html',
+					controller: 'CallbackController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('login.auth', {
+			url: '/auth',
+			views: {
+				'login-window': {
+					templateUrl: 'views/authView.html',
+					controller: 'AuthController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('login.intro', {
+			url: '/intro',
+			views: {
+				'login-window': {
+					templateUrl: 'views/introView.html',
+					controller: 'IntroController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('login.prof', {
+			url: '/prof',
+			views: {
+				'login-window': {
+					templateUrl: 'views/profView.html',
+					controller: 'ProfController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('login.recover', {
+			url: '/recover',
+			views: {
+				'login-window': {
+					templateUrl: 'views/recoverView.html',
+					controller: 'RecoverController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('login.student', {
+			url: '/student',
+			views: {
+				'login-window': {
+					templateUrl: 'views/studentView.html',
+					controller: 'StudentController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.card', {
+			url: '/card/:cardId',
+			views: {
+				'main-window': {
+					templateUrl: 'views/cardView.html',
+					controller: 'CardController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.chat', {
+			url: '/chat/:chatId',
+			views: {
+				'main-window': {
+					templateUrl: 'views/chatView.html',
+					controller: 'ChatController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.create', {
+			url: '/create/:type/:id',
+			views: {
+				'main-window': {
+					templateUrl: 'views/createView.html',
+					controller: 'CreateController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.edit', {
+			url: '/edit/:type/:id',
+			views: {
+				'main-window': {
+					templateUrl: 'views/editView.html',
+					controller: 'EditController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.notifications', {
+			url: '/notifications',
+			views: {
+				'main-window': {
+					templateUrl: 'views/notificationsView.html',
+					controller: 'NotificationsController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.premium', {
+			url: '/premium',
+			views: {
+				'main-window': {
+					templateUrl: 'views/premiumView.html',
+					controller: 'PremiumController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.publication', {
+			url: '/publication/:pubId',
+			views: {
+				'main-window': {
+					templateUrl: 'views/publicationView.html',
+					controller: 'PublicationController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.profile', {
+			url: '/profile/:id',
+			views: {
+				'main-window': {
+					templateUrl: 'views/profileView.html',
+					controller: 'ProfileController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.tabs', {
+			url: '/tabs',
+			views: {
+				'main-window': {
+					templateUrl: 'views/tabsView.html',
+					controller: 'TabsController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.tabs.cards', {
+			url: '/cards',
+			views: {
+				'tabs-window-cards': {
+					templateUrl: 'views/cardsView.html',
+					controller: 'CardsController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.tabs.chats', {
+			url: '/chats',
+			views: {
+				'tabs-window-chats': {
+					templateUrl: 'views/chatsView.html',
+					controller: 'ChatsController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.tabs.publications', {
+			url: '/publications',
+			views: {
+				'tabs-window-publications': {
+					templateUrl: 'views/publicationsView.html',
+					controller: 'PublicationsController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').service('$mock', mock)
+	mock.$inject = [];
+	function mock(){
+		var cards = [{
+			"title": "Yoga Para Crianças",
+			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
+			"date": "21/12/2016",
+			"image": "http://lorempixel.com/output/city-q-c-500-500-10.jpg",
+			"user": {
+				"name": "Camila Oliveira",
+				"avatar": "http://lorempixel.com/output/people-q-c-500-500-9.jpg"
+			}
+		},{
+			"title": "Comemocação Lorem",
+			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
+			"date": "26/01/2017",
+			"image": "http://lorempixel.com/output/city-q-c-500-500-8.jpg",
+			"user": {
+				"name": "Mateus Silva",
+				"avatar": "http://lorempixel.com/output/people-q-c-500-500-3.jpg"
+			}
+		},{
+			"title": "Aulas Experimentais",
+			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
+			"date": "27/02/2017",
+			"image": "http://lorempixel.com/output/city-q-c-500-500-7.jpg",
+			"user": {
+				"name": "Diogo Carvalho",
+				"avatar": "http://lorempixel.com/output/people-q-c-500-500-8.jpg"
+			}
+		}]
+
+		var pubs = [{
+			"title": "Yoga Para Crianças",
+			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
+			"date": "14/12/2016",
+			"image": "http://lorempixel.com/output/city-q-c-500-500-10.jpg",
+			"user": {
+				"name": "Camila Oliveira",
+				"avatar": "http://lorempixel.com/output/people-q-c-500-500-9.jpg"
+			}
+		},{
+			"title": "Comemocação Lorem",
+			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
+			"date": "06/01/2017",
+			"image": "http://lorempixel.com/output/city-q-c-500-500-8.jpg",
+			"user": {
+				"name": "Mateus Silva",
+				"avatar": "http://lorempixel.com/output/people-q-c-500-500-3.jpg"
+			}
+		},{
+			"title": "Aulas Experimentais",
+			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
+			"date": "11/02/2017",
+			"image": "http://lorempixel.com/output/city-q-c-500-500-7.jpg",
+			"user": {
+				"name": "Diogo Carvalho",
+				"avatar": "http://lorempixel.com/output/people-q-c-500-500-8.jpg"
+			}
+		}]
+
+
+		this.get = function( what ){
+			switch(what){
+				case 'cards':
+					return cards
+					break;
+				case 'pubs':
+					return pubs
+					break;
 			}
 		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('login.auth', {
-		url: '/auth',
-		views: {
-			'login-window': {
-				templateUrl: 'views/authView.html',
-				controller: 'AuthController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('login.intro', {
-		url: '/intro',
-		views: {
-			'login-window': {
-				templateUrl: 'views/introView.html',
-				controller: 'IntroController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('login.prof', {
-		url: '/prof',
-		views: {
-			'login-window': {
-				templateUrl: 'views/profView.html',
-				controller: 'ProfController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('login.recover', {
-		url: '/recover',
-		views: {
-			'login-window': {
-				templateUrl: 'views/recoverView.html',
-				controller: 'RecoverController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('login.student', {
-		url: '/student',
-		views: {
-			'login-window': {
-				templateUrl: 'views/studentView.html',
-				controller: 'StudentController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.card', {
-		url: '/card/:cardId',
-		views: {
-			'main-window': {
-				templateUrl: 'views/cardView.html',
-				controller: 'CardController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.chat', {
-		url: '/chat/:chatId',
-		views: {
-			'main-window': {
-				templateUrl: 'views/chatView.html',
-				controller: 'ChatController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.create', {
-		url: '/create/:type/:id',
-		views: {
-			'main-window': {
-				templateUrl: 'views/createView.html',
-				controller: 'CreateController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.edit', {
-		url: '/edit/:type/:id',
-		views: {
-			'main-window': {
-				templateUrl: 'views/editView.html',
-				controller: 'EditController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.notifications', {
-		url: '/notifications',
-		views: {
-			'main-window': {
-				templateUrl: 'views/notificationsView.html',
-				controller: 'NotificationsController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.premium', {
-		url: '/premium',
-		views: {
-			'main-window': {
-				templateUrl: 'views/premiumView.html',
-				controller: 'PremiumController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.profile', {
-		url: '/profile/:id',
-		views: {
-			'main-window': {
-				templateUrl: 'views/profileView.html',
-				controller: 'ProfileController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.publication', {
-		url: '/publication/:pubId',
-		views: {
-			'main-window': {
-				templateUrl: 'views/publicationView.html',
-				controller: 'PublicationController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.tabs', {
-		url: '/tabs',
-		abstract: true,
-		views: {
-			'main-window': {
-				templateUrl: 'views/tabsView.html',
-				controller: 'TabsController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.tabs.cards', {
-		url: '/cards',
-		views: {
-			'tabs-window-cards': {
-				templateUrl: 'views/cardsView.html',
-				controller: 'CardsController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.tabs.chats', {
-		url: '/chats',
-		views: {
-			'tabs-window-chats': {
-				templateUrl: 'views/chatsView.html',
-				controller: 'ChatsController'
-			}
-		}
-	})
-});
-app.config(function($stateProvider){
-	$stateProvider.state('main.tabs.publications', {
-		url: '/publications',
-		views: {
-			'tabs-window-publications': {
-				templateUrl: 'views/publicationsView.html',
-				controller: 'PublicationsController'
-			}
-		}
-	})
-});
+	}
+})();

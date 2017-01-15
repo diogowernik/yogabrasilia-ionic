@@ -7,7 +7,8 @@ var scriptSrc = ['src/assets/vendor/jquery/dist/jquery.min.js',
 'src/app.module.js', 
 'src/**/*.controller.js', 
 'src/app.state.js', 
-'src/**/*.state.js'
+'src/**/*.state.js',
+'src/**/*.service.js'
 ]
 
 var bS 				= require('browser-sync').create(),

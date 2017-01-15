@@ -1,1 +1,5 @@
-app.controller('ProfileController', function(){})
+(function(){
+	angular.module('yogabrasilia').controller('ProfileController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();

@@ -1,11 +1,15 @@
-app.config(function($stateProvider){
-	$stateProvider.state('main.chat', {
-		url: '/chat/:chatId',
-		views: {
-			'main-window': {
-				templateUrl: 'views/chatView.html',
-				controller: 'ChatController'
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
+		$stateProvider.state('main.chat', {
+			url: '/chat/:chatId',
+			views: {
+				'main-window': {
+					templateUrl: 'views/chatView.html',
+					controller: 'ChatController'
+				}
 			}
-		}
-	})
-});
+		})
+	}
+})();

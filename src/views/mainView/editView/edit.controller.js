@@ -1,1 +1,5 @@
-app.controller('EditController', function(){})
+(function(){
+	angular.module('yogabrasilia').controller('EditController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();

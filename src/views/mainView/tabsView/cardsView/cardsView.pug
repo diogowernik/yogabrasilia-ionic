@@ -1,2 +1,16 @@
-div
-	h2 Hello from cards
+ion-content(ng-controller='CardsController as data')
+	div
+		ion-refresher(pulling-text="Pull to refresh..." on-refresh="doRefresh()")
+		div(ng-repeat="card in data.cards").list.card
+			div.item.item-avatar
+					img(ng-src='{{ card.user.avatar }}')
+					h2 {{ card.title }}
+					p {{ card.date }}
+			div.item.item-image
+				img(ng-src='{{ card.image }}')
+			div(style="text-align: justify").item.item-body
+				p {{ card.content | limitTo : 200}}...
+			div.item
+				i.icon.ion-ios-plus
+				span  Leia Mais
+		ion-infinite-scroll(on-infinite="loadMore()" distance="1%")

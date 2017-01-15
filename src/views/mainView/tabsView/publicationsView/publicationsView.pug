@@ -1,2 +1,16 @@
-div(style='height: 100vh')
-	h2 Hello From publications
+ion-content(ng-controller='PublicationsController as data')
+	div
+		ion-refresher(pulling-text="Pull to refresh..." on-refresh="doRefresh()")
+		div(ng-repeat="pub in data.pubs").list.card
+			div.item.item-avatar
+					img(ng-src='{{ pub.user.avatar }}')
+					h2 {{ pub.title }}
+					p {{ pub.date }}
+			div.item.item-image
+				img(ng-src='{{ pub.image }}')
+			div(style="text-align: justify").item.item-body
+				p {{ pub.content | limitTo : 200}}...
+			div.item
+				i.icon.ion-ios-plus
+				span  Leia Mais
+		ion-infinite-scroll(on-infinite="loadMore()" distance="1%")
