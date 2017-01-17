@@ -20,10 +20,7 @@ Para ver o App no Browser:
 
 ```
 /main
-	/tabs
-		/cards
-		/publications
-		/chats
+	/tab
 	/profile
 		/edit
 	/card/:cardId
