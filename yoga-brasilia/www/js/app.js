@@ -314,12 +314,12 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	function ctrl(){}
 })();
 (function(){
-	angular.module('yogabrasilia').controller('PublicationController', ctrl)
+	angular.module('yogabrasilia').controller('ProfileController', ctrl)
 	ctrl.$inject = []
 	function ctrl(){}
 })();
 (function(){
-	angular.module('yogabrasilia').controller('ProfileController', ctrl)
+	angular.module('yogabrasilia').controller('PublicationController', ctrl)
 	ctrl.$inject = []
 	function ctrl(){}
 })();
@@ -594,12 +594,12 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').config(command);
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
-		$stateProvider.state('main.publication', {
-			url: '/publication/:pubId',
+		$stateProvider.state('main.profile', {
+			url: '/profile/:id',
 			views: {
 				'main-window': {
-					templateUrl: 'views/publicationView.html',
-					controller: 'PublicationController'
+					templateUrl: 'views/profileView.html',
+					controller: 'ProfileController'
 				}
 			}
 		})
@@ -609,12 +609,12 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').config(command);
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
-		$stateProvider.state('main.profile', {
-			url: '/profile/:id',
+		$stateProvider.state('main.publication', {
+			url: '/publication/:pubId',
 			views: {
 				'main-window': {
-					templateUrl: 'views/profileView.html',
-					controller: 'ProfileController'
+					templateUrl: 'views/publicationView.html',
+					controller: 'PublicationController'
 				}
 			}
 		})
