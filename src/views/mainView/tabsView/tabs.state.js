@@ -7,9 +7,11 @@
 			views: {
 				'main-window': {
 					templateUrl: 'views/tabsView.html',
-					controller: 'TabsController'
+					controller: 'TabsController',
+					controllerAs: 'tabs'
 				}
-			}
+			},
+			title: "Inicio"
 		})
 	}
 })();

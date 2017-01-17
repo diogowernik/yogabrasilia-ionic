@@ -2,36 +2,40 @@
 	angular.module('yogabrasilia').controller('TabsController', ctrl)
 	ctrl.$inject = ['$scope', '$state', '$timeout']
 	function ctrl($scope, $state, $timeout){
+		// Capture instance
+		var tabs = this;
+
+		// Startup the slider
 		$scope.sliderOptions = {
 			initialSlide: 1,
 			preloadImages: true,
 			touchReleaseOnEdges: true
 		}
 
-		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
-			$scope.s = data.slider;
-			
 
-			
+		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+			tabs.slider = data.slider;
 		});
 
 
-		// // Animate Tab indicator on "slide" change
-		// $scope.$on("$ionicSlides.slideChangeStart", function(event, data){
-		// 	console.log(event)
-		// 	switch(data.slider.activeIndex){
-		// 		case 0:
-		// 			// Timeout is used here to make the comand run inside angular digest cycle
-		// 			$state.go('main.tabs.cards')
-		// 			break;
-		// 		case 1:
-		// 			// Timeout is used here to make the comand run inside angular digest cycle
-		// 			$state.go('main.tabs.publications')
-		// 			break;
-		// 		case 2:
-		// 			$state.go('main.tabs.chats')
-		// 			break;
-		// 	}
-		// });
+		// Animate Tab indicator on "slide" change
+		$scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+			switch(tabs.slider.activeIndex){
+				case 0:
+					$('#tabs-indicator').animate({left: '0'}, 225)
+					break;
+				case 1:
+					$('#tabs-indicator').animate({left: '33.3333%'}, 225)
+					break;
+				case 2:
+					$('#tabs-indicator').animate({left: '66.6666%'}, 225)
+					break;
+			}
+		});
+
+		tabs.go = function( where ){
+			tabs.slider.slideTo(Number(where), 225)
+		}
+
 	}
 })();

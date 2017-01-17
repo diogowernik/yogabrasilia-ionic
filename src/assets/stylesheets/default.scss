@@ -1,6 +1,7 @@
 @import './src/assets/vendor/bourbon/app/assets/stylesheets/_bourbon.scss';
 @import './src/assets/stylesheets/variables/_colors.scss';
 @import './src/assets/stylesheets/variables/_sizes.scss';
+@import "./src/assets/vendor/Waves/dist/waves.min.scss";
 
 .card-bg{
 	margin-top: $s56;

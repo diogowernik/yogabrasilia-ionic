@@ -25,6 +25,7 @@
 		padding-left: $s16;
 		font-size: 1.2rem;
 	}
+	display: block;
 	height: $s48;
 	line-height: $s48;
 	font-size: 1rem;
@@ -62,4 +63,8 @@
 	@include flex(1);
 	color: $white;
 	letter-spacing: 1px;
+}
+
+.page-content{
+	height: calc(100vh  - 112px);
 }

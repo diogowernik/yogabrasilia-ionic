@@ -1,6 +1,6 @@
-ion-content(ng-controller='CardsController as data')
+ion-content(ng-controller='CardsController as data').page-content
 	div
-		ion-refresher(pulling-text="Pull to refresh..." on-refresh="doRefresh()")
+		ion-refresher(on-refresh="doRefresh()")
 		div(ng-repeat="card in data.cards").list.card
 			div.item.item-avatar
 					img(ng-src='{{ card.user.avatar }}')

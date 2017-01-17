@@ -1,4 +1,4 @@
-ion-content(ng-controller='PublicationsController as data')
+ion-content(ng-controller='PublicationsController as data').page-content
 	div
 		ion-refresher(pulling-text="Pull to refresh..." on-refresh="doRefresh()")
 		div(ng-repeat="pub in data.pubs").list.card
