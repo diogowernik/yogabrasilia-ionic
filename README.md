@@ -20,7 +20,7 @@ Para ver o App no Browser:
 
 ```
 /main
-	/tab
+	/tabs
 	/profile
 		/edit
 	/card/:cardId
