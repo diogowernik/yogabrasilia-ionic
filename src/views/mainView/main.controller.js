@@ -10,8 +10,15 @@
 
 		$scope.$on('$stateChangeStart', function(event, view){
 			main.title = view.title;
+			Waves.init({
+				duration: 225
+			});
 		})
 
+		Waves.init({
+			duration: 225
+		});
+		
 		$auth.validateUser()
 		.then(function(user){
 			console.log(user)

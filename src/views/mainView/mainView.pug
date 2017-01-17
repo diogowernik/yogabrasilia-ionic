@@ -5,13 +5,13 @@ ion-side-menus
 				img(ng-src='http://lorempixel.com/output/people-q-c-500-500-8.jpg')
 			div#menu-user-name Diogo Carvalho
 		div#menu-actions-list
-			div(ui-sref='main.tabs' menu-toggle="left").menu-action 
+			div(ui-sref='main.tabs' menu-toggle="left").menu-action.waves-effect
 				i.ion-android-home
 				span Inicio
-			div(ui-sref='main.profile' menu-toggle="left").menu-action 
+			div(ui-sref='main.profile' menu-toggle="left").menu-action.waves-effect
 				i.ion-person
 				span Perfil
-			div(ui-sref='main.publication' menu-toggle="left").menu-action 
+			div(ui-sref='main.publication' menu-toggle="left").menu-action.waves-effect
 				i.ion-ios-albums
 				span Minhas Publicações
 			div.menu-diveder
@@ -23,11 +23,11 @@ ion-side-menus
 				span Gostou do app? Avalie!
 	ion-side-menu-content
 		div#header-bar
-			div(menu-toggle="left")#sidemenu-toggle
+			div(menu-toggle="left")#sidemenu-toggle.waves-effect.waves-light
 				span.ion-navicon
 			span#header-bar-title {{ main.title }}
 			span#header-bar-filter
 				span.ion-ribbon-b
 			span(ui-sref='main.notifications')#header-bar-premium
-				span.ion-ios-bell
+				span.ion-ios-bell.waves-effect.waves-circle.waves-light
 		ion-nav-view(name='main-window')
