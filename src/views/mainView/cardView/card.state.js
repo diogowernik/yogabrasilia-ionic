@@ -3,6 +3,7 @@
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.card', {
+			title: "Card",
 			url: '/card/:cardId',
 			views: {
 				'main-window': {

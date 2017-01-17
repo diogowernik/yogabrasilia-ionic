@@ -3,6 +3,7 @@
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.premium', {
+			title: "Premium",
 			url: '/premium',
 			views: {
 				'main-window': {

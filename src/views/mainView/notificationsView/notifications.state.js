@@ -3,6 +3,7 @@
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.notifications', {
+			title: "Notificações",
 			url: '/notifications',
 			views: {
 				'main-window': {

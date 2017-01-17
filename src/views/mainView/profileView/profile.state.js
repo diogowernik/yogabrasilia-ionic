@@ -3,6 +3,7 @@
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.profile', {
+			title: "Perfil",
 			url: '/profile/:id',
 			views: {
 				'main-window': {

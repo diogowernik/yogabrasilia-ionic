@@ -58,7 +58,7 @@
 				"name": "Diogo Carvalho",
 				"avatar": "http://lorempixel.com/output/people-q-c-500-500-8.jpg"
 			}
-		}]
+		}].reverse()
 
 
 		this.get = function( what ){

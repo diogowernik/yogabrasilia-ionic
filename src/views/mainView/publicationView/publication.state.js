@@ -3,6 +3,7 @@
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.publication', {
+			title: "Publicações",
 			url: '/publication/:pubId',
 			views: {
 				'main-window': {

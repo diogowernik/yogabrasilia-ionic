@@ -60,11 +60,15 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').controller('MainController', ctrl);
 	ctrl.$inject = ['$scope', '$state', '$auth', '$ionicSideMenuDelegate'];
 	function ctrl($scope, $state, $auth, $ionicSideMenuDelegate){
+		var main = this;
+
 		$ionicSideMenuDelegate.edgeDragThreshold(100);
 
-		$scope.view = {
-			title: 'Inicio'
-		}
+		main.title = 'Inicio';
+
+		$scope.$on('$stateChangeStart', function(event, view){
+			main.title = view.title;
+		})
 
 		$auth.validateUser()
 		.then(function(user){
@@ -75,6 +79,8 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 		// 	$state.go('login.auth')
 		// })
 		}
+
+
 })();
 (function(){
 	angular.module('yogabrasilia').controller('CallbackController', ctrl)
@@ -191,6 +197,11 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	}
 })();
 (function(){
+	angular.module('yogabrasilia').controller('RecoverController', ctrl)
+	ctrl.$inject = []
+	function ctrl(){}
+})();
+(function(){
 	angular.module('yogabrasilia').controller('ProfController', ctrl)
 	ctrl.$inject = ['$scope', '$state']
 	function ctrl($scope, $state){
@@ -233,11 +244,6 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 			})
 		});
 	}
-})();
-(function(){
-	angular.module('yogabrasilia').controller('RecoverController', ctrl)
-	ctrl.$inject = []
-	function ctrl(){}
 })();
 (function(){
 	angular.module('yogabrasilia').controller('StudentController', ctrl)
@@ -314,12 +320,12 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	function ctrl(){}
 })();
 (function(){
-	angular.module('yogabrasilia').controller('PublicationController', ctrl)
+	angular.module('yogabrasilia').controller('ProfileController', ctrl)
 	ctrl.$inject = []
 	function ctrl(){}
 })();
 (function(){
-	angular.module('yogabrasilia').controller('ProfileController', ctrl)
+	angular.module('yogabrasilia').controller('PublicationController', ctrl)
 	ctrl.$inject = []
 	function ctrl(){}
 })();
@@ -327,37 +333,41 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').controller('TabsController', ctrl)
 	ctrl.$inject = ['$scope', '$state', '$timeout']
 	function ctrl($scope, $state, $timeout){
+		// Capture instance
+		var tabs = this;
+
+		// Startup the slider
 		$scope.sliderOptions = {
 			initialSlide: 1,
 			preloadImages: true,
 			touchReleaseOnEdges: true
 		}
 
-		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
-			$scope.s = data.slider;
-			
 
-			
+		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+			tabs.slider = data.slider;
 		});
 
 
-		// // Animate Tab indicator on "slide" change
-		// $scope.$on("$ionicSlides.slideChangeStart", function(event, data){
-		// 	console.log(event)
-		// 	switch(data.slider.activeIndex){
-		// 		case 0:
-		// 			// Timeout is used here to make the comand run inside angular digest cycle
-		// 			$state.go('main.tabs.cards')
-		// 			break;
-		// 		case 1:
-		// 			// Timeout is used here to make the comand run inside angular digest cycle
-		// 			$state.go('main.tabs.publications')
-		// 			break;
-		// 		case 2:
-		// 			$state.go('main.tabs.chats')
-		// 			break;
-		// 	}
-		// });
+		// Animate Tab indicator on "slide" change
+		$scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+			switch(tabs.slider.activeIndex){
+				case 0:
+					$('#tabs-indicator').animate({left: '0'}, 225)
+					break;
+				case 1:
+					$('#tabs-indicator').animate({left: '33.3333%'}, 225)
+					break;
+				case 2:
+					$('#tabs-indicator').animate({left: '66.6666%'}, 225)
+					break;
+			}
+		});
+
+		tabs.go = function( where ){
+			tabs.slider.slideTo(Number(where), 225)
+		}
+
 	}
 })();
 (function(){
@@ -406,7 +416,8 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 			url: '/main',
 			abstract: true,
 			templateUrl: 'views/mainView.html',
-			controller: 'MainController'
+			controller: 'MainController',
+			controllerAs: 'main'
 		})
 	}
 })();
@@ -459,12 +470,12 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').config(command);
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
-		$stateProvider.state('login.prof', {
-			url: '/prof',
+		$stateProvider.state('login.recover', {
+			url: '/recover',
 			views: {
 				'login-window': {
-					templateUrl: 'views/profView.html',
-					controller: 'ProfController'
+					templateUrl: 'views/recoverView.html',
+					controller: 'RecoverController'
 				}
 			}
 		})
@@ -474,12 +485,12 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').config(command);
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
-		$stateProvider.state('login.recover', {
-			url: '/recover',
+		$stateProvider.state('login.prof', {
+			url: '/prof',
 			views: {
 				'login-window': {
-					templateUrl: 'views/recoverView.html',
-					controller: 'RecoverController'
+					templateUrl: 'views/profView.html',
+					controller: 'ProfController'
 				}
 			}
 		})
@@ -505,6 +516,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.card', {
+			title: "Card",
 			url: '/card/:cardId',
 			views: {
 				'main-window': {
@@ -520,6 +532,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.chat', {
+			title: "Chat",
 			url: '/chat/:chatId',
 			views: {
 				'main-window': {
@@ -565,6 +578,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.notifications', {
+			title: "Notificações",
 			url: '/notifications',
 			views: {
 				'main-window': {
@@ -580,6 +594,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.premium', {
+			title: "Premium",
 			url: '/premium',
 			views: {
 				'main-window': {
@@ -594,22 +609,8 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').config(command);
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
-		$stateProvider.state('main.publication', {
-			url: '/publication/:pubId',
-			views: {
-				'main-window': {
-					templateUrl: 'views/publicationView.html',
-					controller: 'PublicationController'
-				}
-			}
-		})
-	}
-})();
-(function(){
-	angular.module('yogabrasilia').config(command);
-	command.$inject = ['$stateProvider'];
-	function command($stateProvider){
 		$stateProvider.state('main.profile', {
+			title: "Perfil",
 			url: '/profile/:id',
 			views: {
 				'main-window': {
@@ -624,14 +625,32 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	angular.module('yogabrasilia').config(command);
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
+		$stateProvider.state('main.publication', {
+			title: "Publicações",
+			url: '/publication/:pubId',
+			views: {
+				'main-window': {
+					templateUrl: 'views/publicationView.html',
+					controller: 'PublicationController'
+				}
+			}
+		})
+	}
+})();
+(function(){
+	angular.module('yogabrasilia').config(command);
+	command.$inject = ['$stateProvider'];
+	function command($stateProvider){
 		$stateProvider.state('main.tabs', {
 			url: '/tabs',
 			views: {
 				'main-window': {
 					templateUrl: 'views/tabsView.html',
-					controller: 'TabsController'
+					controller: 'TabsController',
+					controllerAs: 'tabs'
 				}
-			}
+			},
+			title: "Inicio"
 		})
 	}
 })();
@@ -740,7 +759,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 				"name": "Diogo Carvalho",
 				"avatar": "http://lorempixel.com/output/people-q-c-500-500-8.jpg"
 			}
-		}]
+		}].reverse()
 
 
 		this.get = function( what ){

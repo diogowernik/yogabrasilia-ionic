@@ -179,6 +179,10 @@
   letter-spacing: 1px;
 }
 
+.page-content {
+  height: calc(100vh  - 112px);
+}
+
 #auth-logo {
   width: 100%;
   background-color: #90489C;

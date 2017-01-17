@@ -6,7 +6,8 @@
 			url: '/main',
 			abstract: true,
 			templateUrl: 'views/mainView.html',
-			controller: 'MainController'
+			controller: 'MainController',
+			controllerAs: 'main'
 		})
 	}
 })();

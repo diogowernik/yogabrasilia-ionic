@@ -2,11 +2,15 @@
 	angular.module('yogabrasilia').controller('MainController', ctrl);
 	ctrl.$inject = ['$scope', '$state', '$auth', '$ionicSideMenuDelegate'];
 	function ctrl($scope, $state, $auth, $ionicSideMenuDelegate){
+		var main = this;
+
 		$ionicSideMenuDelegate.edgeDragThreshold(100);
 
-		$scope.view = {
-			title: 'Inicio'
-		}
+		main.title = 'Inicio';
+
+		$scope.$on('$stateChangeStart', function(event, view){
+			main.title = view.title;
+		})
 
 		$auth.validateUser()
 		.then(function(user){
@@ -17,4 +21,6 @@
 		// 	$state.go('login.auth')
 		// })
 		}
+
+
 })();
