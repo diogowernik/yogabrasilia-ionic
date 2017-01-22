@@ -1,16 +1,20 @@
 ion-content(ng-controller='CardsController as data').page-content
 	div
-		ion-refresher(on-refresh="doRefresh()")
+		ion-refresher(on-refresh="data.doRefresh()" pulling-icon="ion-loop" spinner="lines")
 		div(ng-repeat="card in data.cards").list.card
+			div.item.item-image.card-image
+				img(ng-src='{{ card.image }}')
 			div.item.item-avatar
 					img(ng-src='{{ card.user.avatar }}')
 					h2 {{ card.title }}
-					p {{ card.date }}
-			div.item.item-image
-				img(ng-src='{{ card.image }}')
+					p {{ card.type }}
 			div(style="text-align: justify").item.item-body
-				p {{ card.content | limitTo : 200}}...
-			div.item
-				i.icon.ion-ios-plus
-				span  Leia Mais
-		ion-infinite-scroll(on-infinite="loadMore()" distance="1%")
+				p.card-body {{ card.content | limitTo : 200}}...
+			div.item.card-action-flex
+				div.card-action
+					i.icon.ion-ios-telephone
+					span  Telefone
+				div.card-action
+					i.icon.ion-location
+					span  Endereço
+		ion-infinite-scroll(on-infinite="data.loadMore()" distance="5%" spinner="lines" immediate-check="false")

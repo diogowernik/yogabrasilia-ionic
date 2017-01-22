@@ -49,6 +49,12 @@ gulp.task('dev_serve', function(){
 	});
 })
 
+gulp.task('setup_waves', function(){
+	return gulp.src('src/assets/vendor/Waves/dist/waves.min.css')
+	.pipe(concat('waves.min.scss'))
+	.pipe(gulp.dest('src/assets/vendor/Waves/dist/'));
+});
+
 gulp.task('dev_watch', function(){
 	gulp.watch(['src/**/*.js'], ['dev_cp_js'])
 	gulp.watch(['src/**/*.scss'], ['dev_cp_scss'])
@@ -63,7 +69,7 @@ gulp.task('dev_cp_js', function(){
 	.pipe(bS.stream())
 })
 
-gulp.task('dev_cp_scss', function(){
+gulp.task('dev_cp_scss', ['setup_waves'], function(){
 	return gulp.src(['src/assets/stylesheets/default.scss', 'src/components/**/*.scss', 'src/views/**/*.scss'])
 	.pipe(plumber({errorHandler: errHandler}))
 	.pipe(concat('style.css'))

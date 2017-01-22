@@ -318,8 +318,11 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 })();
 (function(){
 	angular.module('yogabrasilia').controller('CreateController', ctrl)
-	ctrl.$inject = []
-	function ctrl(){}
+	ctrl.$inject = ['$stateParams']
+	function ctrl($stateParams){
+		var data = this;
+		data.type = $stateParams.type;
+	}
 })();
 (function(){
 	angular.module('yogabrasilia').controller('EditController', ctrl)
@@ -371,12 +374,15 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 			switch(tabs.slider.activeIndex){
 				case 0:
 					$('#tabs-indicator').animate({left: '0'}, 225)
+					$('#fab').animate({bottom: '72px'}, 225)
 					break;
 				case 1:
 					$('#tabs-indicator').animate({left: '33.3333%'}, 225)
+					$('#fab').animate({bottom: '72px'}, 225)
 					break;
 				case 2:
 					$('#tabs-indicator').animate({left: '66.6666%'}, 225)
+					$('#fab').animate({bottom: '-72px'}, 225)
 					break;
 			}
 		});
@@ -385,13 +391,32 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 			tabs.slider.slideTo(Number(where), 225)
 		}
 
+		tabs.create = function(){
+			if(tabs.slider.activeIndex == 0){
+				$state.go('main.create', {'type': "Card"})
+			}
+			else{
+				$state.go('main.create', {'type': "Pub"})
+			}
+		}
+
 	}
 })();
 (function(){
 	angular.module('yogabrasilia').controller('CardsController', ctrl)
-	ctrl.$inject = ['$mock']
-	function ctrl($mock){
-		this.cards = $mock.get('cards');
+	ctrl.$inject = ['$mock', '$scope']
+	function ctrl($mock, $scope){
+		var data = this;
+		data.cards = $mock.get('cards');
+
+		data.doRefresh = function(){
+			$scope.$broadcast('scroll.refreshComplete');
+		}
+		
+		data.loadMore = function(){
+			// $scope.$broadcast('scroll.infiniteScrollComplete');
+		}
+
 	}
 })();
 (function(){
@@ -401,9 +426,18 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 })();
 (function(){
 	angular.module('yogabrasilia').controller('PublicationsController', ctrl)
-	ctrl.$inject = ['$mock']
-	function ctrl($mock){
-		this.pubs = $mock.get('pubs');
+	ctrl.$inject = ['$mock', "$scope"]
+	function ctrl($mock, $scope){
+		var data = this;
+		data.pubs = $mock.get('pubs');
+
+		data.doRefresh = function(){
+			$scope.$broadcast('scroll.refreshComplete');
+		}
+		
+		data.loadMore = function(){
+			// $scope.$broadcast('scroll.infiniteScrollComplete');
+		}
 	}
 })();
 (function(){
@@ -565,11 +599,16 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.create', {
-			url: '/create/:type/:id',
+			url: '/create',
+			title: 'Criar',
+			params: {
+				type: null
+			},
 			views: {
 				'main-window': {
 					templateUrl: 'views/createView.html',
-					controller: 'CreateController'
+					controller: 'CreateController',
+					controllerAs: 'data'
 				}
 			}
 		})
@@ -724,6 +763,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 			"title": "Yoga Para Crianças",
 			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
 			"date": "21/12/2016",
+			"type": "Espaço de Yoga - Águas Claras",
 			"image": "http://lorempixel.com/output/city-q-c-500-500-10.jpg",
 			"user": {
 				"name": "Camila Oliveira",
@@ -733,6 +773,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 			"title": "Comemocação Lorem",
 			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
 			"date": "26/01/2017",
+			"type": "Espaço de Yoga - Asa Norte",
 			"image": "http://lorempixel.com/output/city-q-c-500-500-8.jpg",
 			"user": {
 				"name": "Mateus Silva",
@@ -742,6 +783,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 			"title": "Aulas Experimentais",
 			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
 			"date": "27/02/2017",
+			"type": "Professora de Yoga - Asa Sul",
 			"image": "http://lorempixel.com/output/city-q-c-500-500-7.jpg",
 			"user": {
 				"name": "Diogo Carvalho",

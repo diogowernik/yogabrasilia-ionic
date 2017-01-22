@@ -6,6 +6,7 @@
 			"title": "Yoga Para Crianças",
 			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
 			"date": "21/12/2016",
+			"type": "Espaço de Yoga - Águas Claras",
 			"image": "http://lorempixel.com/output/city-q-c-500-500-10.jpg",
 			"user": {
 				"name": "Camila Oliveira",
@@ -15,6 +16,7 @@
 			"title": "Comemocação Lorem",
 			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
 			"date": "26/01/2017",
+			"type": "Espaço de Yoga - Asa Norte",
 			"image": "http://lorempixel.com/output/city-q-c-500-500-8.jpg",
 			"user": {
 				"name": "Mateus Silva",
@@ -24,6 +26,7 @@
 			"title": "Aulas Experimentais",
 			"content": "Nam cursus magna in suscipit efficitur. Fusce fermentum consectetur vestibulum. Nulla mattis nisi porttitor leo pretium efficitur. Aliquam vitae tincidunt lacus. Maecenas viverra lacinia metus vel congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ornare, est nec tempor elementum, velit neque efficitur metus, ac fringilla metus sapien in ipsum. Phasellus tincidunt leo in pharetra tristique. Integer quis volutpat risus. In vel arcu vulputate, suscipit justo eget, bibendum tortor. Nam laoreet dui vel tempor vestibulum. Aenean quis elit quis mauris rutrum molestie a sed justo. Aenean aliquet porttitor lectus, vitae facilisis massa placerat tristique. Donec at enim condimentum, vehicula tortor vel, euismod justo. Praesent id auctor velit.",
 			"date": "27/02/2017",
+			"type": "Professora de Yoga - Asa Sul",
 			"image": "http://lorempixel.com/output/city-q-c-500-500-7.jpg",
 			"user": {
 				"name": "Diogo Carvalho",
