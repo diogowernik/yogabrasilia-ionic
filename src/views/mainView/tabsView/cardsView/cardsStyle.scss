@@ -1,0 +1,20 @@
+.card-image{
+	max-height: 200px;
+}
+
+.card-body{
+	margin-top: 0!important;
+}
+
+.card-action-flex{
+	@include display(flex);
+}
+
+.card-action{
+	@include flex(1);
+	text-align: center;
+	i{
+		position: relative;
+		right: 6px;
+	}
+}

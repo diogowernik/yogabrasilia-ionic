@@ -1,6 +1,6 @@
 ion-content(ng-controller='PublicationsController as data').page-content
 	div
-		ion-refresher(pulling-text="Pull to refresh..." on-refresh="doRefresh()")
+		ion-refresher(on-refresh="data.doRefresh()" pulling-icon="ion-loop" spinner="lines")
 		div(ng-repeat="pub in data.pubs").list.card
 			div.item.item-avatar
 					img(ng-src='{{ pub.user.avatar }}')
@@ -9,8 +9,8 @@ ion-content(ng-controller='PublicationsController as data').page-content
 			div.item.item-image
 				img(ng-src='{{ pub.image }}')
 			div(style="text-align: justify").item.item-body
-				p {{ pub.content | limitTo : 200}}...
-			div.item
-				i.icon.ion-ios-plus
+				p.publication-body {{ pub.content | limitTo : 200}}...
+			div.item.publication-action
+				i.icon.ion-plus-round
 				span  Leia Mais
-		ion-infinite-scroll(on-infinite="loadMore()" distance="1%")
+		ion-infinite-scroll(on-infinite="data.loadMore()" distance="5%" spinner="lines" immediate-check="false")

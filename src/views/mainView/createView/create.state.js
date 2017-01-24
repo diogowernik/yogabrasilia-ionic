@@ -3,11 +3,16 @@
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.create', {
-			url: '/create/:type/:id',
+			url: '/create',
+			title: 'Criar',
+			params: {
+				type: null
+			},
 			views: {
 				'main-window': {
 					templateUrl: 'views/createView.html',
-					controller: 'CreateController'
+					controller: 'CreateController',
+					controllerAs: 'data'
 				}
 			}
 		})

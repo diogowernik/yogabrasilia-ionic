@@ -23,18 +23,30 @@
 			switch(tabs.slider.activeIndex){
 				case 0:
 					$('#tabs-indicator').animate({left: '0'}, 225)
+					$('#fab').animate({bottom: '72px'}, 225)
 					break;
 				case 1:
 					$('#tabs-indicator').animate({left: '33.3333%'}, 225)
+					$('#fab').animate({bottom: '72px'}, 225)
 					break;
 				case 2:
 					$('#tabs-indicator').animate({left: '66.6666%'}, 225)
+					$('#fab').animate({bottom: '-72px'}, 225)
 					break;
 			}
 		});
 
 		tabs.go = function( where ){
 			tabs.slider.slideTo(Number(where), 225)
+		}
+
+		tabs.create = function(){
+			if(tabs.slider.activeIndex == 0){
+				$state.go('main.create', {'type': "Card"})
+			}
+			else{
+				$state.go('main.create', {'type': "Pub"})
+			}
 		}
 
 	}
