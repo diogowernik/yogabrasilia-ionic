@@ -627,10 +627,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.profile', {
-<<<<<<< HEAD
-=======
 			title: "Perfil",
->>>>>>> 5f9460201be6692c285cd3fac8eb21c87279a4f6
 			url: '/profile/:id',
 			views: {
 				'main-window': {
@@ -646,10 +643,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 	command.$inject = ['$stateProvider'];
 	function command($stateProvider){
 		$stateProvider.state('main.publication', {
-<<<<<<< HEAD
-=======
 			title: "Publicações",
->>>>>>> 5f9460201be6692c285cd3fac8eb21c87279a4f6
 			url: '/publication/:pubId',
 			views: {
 				'main-window': {
