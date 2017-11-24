@@ -9,7 +9,7 @@
 			$state.go('main.tabs.publications');
 		})
 		.catch(function(err){
-			$state.go('login.intro')
+			$state.go('login.auth')
 		})
 	}
 })();

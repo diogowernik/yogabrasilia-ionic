@@ -7,7 +7,7 @@
 	command.$inject = ['$authProvider'];
 	function command($authProvider){
 		$authProvider.configure({
-			apiUrl: 'http://smartmarket.io/api/v1',
+			apiUrl: 'http://yoga.portaisdobem.org/api/v2',
 			// Change to inAppBrowser before production
 			omniauthWindowType: 'inAppBrowser',
 			storage: 'localStorage',
